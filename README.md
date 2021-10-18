@@ -7,4 +7,4 @@ A web app allowing Dungeons and Dragons characters to enter character stats and 
 * Character page customization, including images and backstory text blocks that don't appear on a character sheet.
 ## Frameworks, libraries and tools
 * Django
-* Code from [GitHub](https://github.com/TyTyDavis/CharacterSheetBot)
+* Code from [DnDSheetBot](https://github.com/TyTyDavis/CharacterSheetBot)
