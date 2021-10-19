@@ -20,8 +20,8 @@ from characters import views as v
 
 urlpatterns = [
     path('users/', include('users.urls')),
-    path('', v.home, name="home")
-    path("<int:id>", v.characterView, name="character")
+    path('', v.home, name="home"),
+    #path("<int:id>", v.characterView, name="character"),
     path('admin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
     path('', include("django.contrib.auth.urls")),
