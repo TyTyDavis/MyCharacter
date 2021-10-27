@@ -20,6 +20,8 @@ from characters import views as v
 
 urlpatterns = [
     path('users/', include('users.urls')),
+    path('characters/', include('characters.urls')),
+    path('<int:char_pk>/', v.characterView, name='character'),
     path('', v.home, name="home"),
     #path("<int:id>", v.characterView, name="character"),
     path('admin/', admin.site.urls),

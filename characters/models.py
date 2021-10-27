@@ -105,5 +105,5 @@ class Character(models.Model):
     def __str__(self):
         return "%s, %s %s" %(self.name, self.race, self.characterClass)
 
-    #def get_absolute_url(self):
-        #return reverse('article', kwargs={'url_title': self.title})
+    def get_absolute_url(self):
+        return reverse('character', kwargs={'char_pk': self.pk})
