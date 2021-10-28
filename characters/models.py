@@ -7,6 +7,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class Character(models.Model):
+    #add saves
+
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     #top box
@@ -26,6 +28,13 @@ class Character(models.Model):
     hitDieTotal = models.IntegerField(default=1,validators=[MaxValueValidator(20), MinValueValidator(1)])
     proficiency = models.IntegerField(default=1,validators=[MaxValueValidator(20), MinValueValidator(1)])
 
+    #saves
+    strengthSave = models.BooleanField(default=False)
+    dexteritySave = models.BooleanField(default=False)
+    constitutionSave = models.BooleanField(default=False)
+    intelligenceSave = models.BooleanField(default=False)
+    wisdomSave = models.BooleanField(default=False)
+    charismaSave = models.BooleanField(default=False)
     #abilities
     strength = models.IntegerField(default=10,validators=[MaxValueValidator(35), MinValueValidator(1)])
     dexterity = models.IntegerField(default=10,validators=[MaxValueValidator(35), MinValueValidator(1)])
@@ -61,6 +70,8 @@ class Character(models.Model):
     perceptionProficiency = models.BooleanField(default=False)
     performance = models.IntegerField(default=0,validators=[MaxValueValidator(20), MinValueValidator(-20)])
     performanceProficiency = models.BooleanField(default=False)
+    persuasion = models.IntegerField(default=0,validators=[MaxValueValidator(20), MinValueValidator(-20)])
+    persuasionProficiency = models.BooleanField(default=False)
     religion = models.IntegerField(default=0,validators=[MaxValueValidator(20), MinValueValidator(-20)])
     religionProficiency = models.BooleanField(default=False)
     sleightOfHand = models.IntegerField(default=0,validators=[MaxValueValidator(20), MinValueValidator(-20)])

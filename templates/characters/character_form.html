@@ -1,10 +1,163 @@
 {% extends 'main/base.html' %}
-{% load crispy_forms_tags %}
 {% block title %}Create character{% endblock %}
 
 {% block content %}
 <form method="post" action="#">{% csrf_token %}
-    {{ form|crispy}}
+  <div class="container bg-light">
+  <div class="row">
+    <div class="col">
+      <label for="id_name">Name:*</label><br>
+      {{ form.name }}
+    </div>
+    <div class="col-2">
+      <label for="id_characterClass">Class:*</label><br>
+      {{ form.characterClass }}
+    </div>
+    <div class="col-1">
+      <label for="id_level">Level:*</label><br>
+      {{ form.level }}
+    </div>
+    <div class="col">
+      <label for="id_background">Background:*</label><br>
+      {{ form.background }}
+    </div>
+    <div class="col">
+      <label for="id_playerName">Player name:*</label><br>
+      {{ form.playerName }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="id_race">Race:*</label><br>
+      {{ form.race }}
+    </div>
+  <div class="col">
+    <label for="id_alignment">Alignment:*</label><br>
+    {{ form.alignment }}
+  </div>
+  <div class="col">
+    <label for="id_experiencePoints">Experience points:*</label><br>
+    {{ form.experiencePoints }}
+  </div>
+  </div>
+  </div>
+
+<br>
+  <div class="container">
+    <div class="row">
+      <div class="col bg-light">
+        <label for="id_strength">Strength:*</label><br>
+        {{ form.strength }}<br>
+        <label for="id_dexterity">Dexterity:*</label><br>
+        {{ form.dexterity }}<br>
+        <label for="id_constitution">Constitution:*</label><br>
+        {{ form.constitution }}<br>
+        <label for="intelligence">Intelligence:*</label><br>
+        {{ form.intelligence }}<br>
+        <label for="id_wisdom">Wisdom:*</label><br>
+        {{ form.wisdom }}<br>
+        <label for="id_charisma">Charisma:*</label><br>
+        {{ form.charisma }}<br>
+        <br>
+        <label for="id_strengthSave">{{ form.strengthSave }} Strength save*</label><br>
+        <label for="id_dexteritySave">{{ form.dexteritySave }} Dexterity save*</label><br>
+        <label for="id_constitutionSave">{{ form.constitutionSave }} Constitution save*</label><br>
+        <label for="id_intelligenceSave">{{ form.intelligenceSave }} Intelligence save*</label><br>
+        <label for="id_wisdomSave">{{ form.wisdomSave }} Wisdom save*</label><br>
+        <label for="id_charismaSave">{{ form.charismaSave }} Charisma save*</label><br>
+        <br>
+        <label for="id_languages">Languages:*</label><br>
+        <textarea name="languages" cols="20" rows="9" maxlength="500" required id="id_languages">
+</textarea><br><br>
+        <label for="id_proficiencies">Proficiencies:*</label><br>
+        <textarea name="proficiencies" cols="20" rows="9" maxlength="500" required id="id_proficiencies">
+</textarea><br>
+      </div>
+      <div class="col">
+        <label for="id_inspiration">Inspiration:</label><br>
+        {{ form.inspiration }}<br>
+        <label for="id_proficiency">Proficiency bonus:*</label><br>
+        {{ form.proficiency }}<br>
+        <br>
+        <label for="id_acrobatics">Acrobatics:*</label><br>
+        {{ form.acrobaticsProficiency }} {{ form.acrobatics }}<br>
+        <label for="id_animalHandling">Animal Handling:*</label><br>
+        {{ form.animalHandlingProficiency }} {{ form.animalHandling }}<br>
+        <label for="id_arcana">Arcana:*</label><br>
+        {{ form.arcanaProficiency }} {{ form.arcana }}<br>
+        <label for="id_athletics">Athletics:*</label><br>
+        {{ form.athleticsProficiency }} {{ form.athletics }}<br>
+        <label for="id_deception">Deception:*</label><br>
+        {{ form.deceptionProficiency }} {{ form.deception }}<br>
+        <label for="id_history">History:*</label><br>
+        {{ form.historyProficiency }} {{ form.history }}<br>
+        <label for="id_initimidation">Intimidation:*</label><br>
+        {{ form.intimidationProficiency }} {{ form.intimidation }}<br>
+        <label for="id_investigation">Investigation:*</label><br>
+        {{ form.investigationProficiency }} {{ form.investigation}}<br>
+        <label for="id_medicine">Medicine:*</label><br>
+        {{ form.medicineProficiency }} {{ form.medicine }}<br>
+        <label for="id_nature">Nature:*</label><br>
+        {{ form.natureProficiency }} {{ form.nature }}<br>
+        <label for="id_perception">Perception:*</label><br>
+        {{ form.perceptionProficiency }} {{ form.perception }}<br>
+        <label for="id_performance">Performance:*</label><br>
+        {{ form.performanceProficiency }} {{ form.performance }}<br>
+        <label for="id_persuasion">Persuasion:*</label><br>
+        {{ form.persuasionProficiency }} {{ form.persuasion }}<br>
+        <label for="id_religion">Religion:*</label><br>
+        {{ form.religionProficiency }} {{ form.religion }}<br>
+        <label for="id_sleightOfHand">Sleight of Hand:*</label><br>
+        {{ form.sleightOfHandProficiency }} {{ form.sleightOfHand }}<br>
+        <label for="id_stealth">Stealth:*</label><br>
+        {{ form.stealthProficiency }} {{ form.stealth }}<br>
+        <label for="id_survival">Survival:*</label><br>
+        {{ form.survivalProficiency }} {{ form.survival}}<br>
+      </div>
+      <div class="col bg-light">
+        <label for="id_armorClass">A.C.:*</label>
+        {{form.armorClass }}<br>
+        <label for="id_speed">Speed:*</label>
+        {{ form.speed }}<br>
+        <label for="id_hitDieTotal">Hit Die Total:*</label><br>
+        {{form.hitDieTotal }}<br>
+        <label for="id_hitDie">Hit Die:*</label><br>
+        {{ form.hitDie }}<br>
+        <br>
+        <label for="id_weapon1Name">Weapon 1:*</label><br>
+        {{ form.weapon1Name }}<br>
+        <label for="id_weapon1Attack">Weapon 1 attackk bonus:*</label><br>
+        {{ form.weapon1Attack }}<br>
+        <label for="id_weapon1Dmg">Weapon 1 damage:*</label><br>
+        {{ form.weapon1Dmg }}<br>
+        <br>
+        <label for="id_weapon2Name">Weapon 2:</label><br>
+        {{ form.weapon2Name }}<br>
+        <label for="id_weapon2Attack">Weapon 2 attack bonus:</label><br>
+        {{ form.weapon2Attack }}<br>
+        <label for="id_weapon2Dmg">Weapon 2 damage:</label><br>
+        {{ form.weapon2Dmg }}<br>
+        <br>
+        <label for="id_spells">Spells:</label><br>
+        <textarea name="spells" cols="25" rows="6" maxlength="500" required id="id_spells"></textarea><br>
+        <br>
+        <label for="id_cp">CP:</label><br>
+        {{ form.cp }}<br>
+        <label for="id_sp">SP:</label><br>
+        {{ form.sp }}<br>
+        <label for="id_ep">EP:</label><br>
+        {{ form.ep }}<br>
+        <label for="id_gp">GP:</label><br>
+        {{ form.gp }}<br>
+        <label for="id_pp">PP:</label><br>
+        {{ form.pp }}<br>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
     <input type="submit" value="Save">
 </form>
 {% endblock %}
