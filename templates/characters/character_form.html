@@ -1,6 +1,9 @@
 {% extends 'main/base.html' %}
+<head>
 {% block title %}Create character{% endblock %}
+<!--make number boxes smaller-->
 
+</head>
 {% block content %}
 <form method="post" action="#">{% csrf_token %}
   <div class="container bg-light">
@@ -45,7 +48,7 @@
 <br>
   <div class="container">
     <div class="row">
-      <div class="col bg-light">
+      <div class="col-sm-3 bg-light">
         <label for="id_strength">Strength:*</label><br>
         {{ form.strength }}<br>
         <label for="id_dexterity">Dexterity:*</label><br>
@@ -73,7 +76,7 @@
         <textarea name="proficiencies" cols="20" rows="9" maxlength="500" required id="id_proficiencies">
 </textarea><br>
       </div>
-      <div class="col">
+      <div class="col-sm-3">
         <label for="id_inspiration">Inspiration:</label><br>
         {{ form.inspiration }}<br>
         <label for="id_proficiency">Proficiency bonus:*</label><br>
@@ -114,10 +117,10 @@
         <label for="id_survival">Survival:*</label><br>
         {{ form.survivalProficiency }} {{ form.survival}}<br>
       </div>
-      <div class="col bg-light">
-        <label for="id_armorClass">A.C.:*</label>
+      <div class="col-sm-3 bg-light">
+        <label for="id_armorClass">A.C.:*</label><br>
         {{form.armorClass }}<br>
-        <label for="id_speed">Speed:*</label>
+        <label for="id_speed">Speed:*</label><br>
         {{ form.speed }}<br>
         <label for="id_hitDieTotal">Hit Die Total:*</label><br>
         {{form.hitDieTotal }}<br>
@@ -126,7 +129,7 @@
         <br>
         <label for="id_weapon1Name">Weapon 1:*</label><br>
         {{ form.weapon1Name }}<br>
-        <label for="id_weapon1Attack">Weapon 1 attackk bonus:*</label><br>
+        <label for="id_weapon1Attack">Weapon 1 attack bonus:*</label><br>
         {{ form.weapon1Attack }}<br>
         <label for="id_weapon1Dmg">Weapon 1 damage:*</label><br>
         {{ form.weapon1Dmg }}<br>
@@ -151,9 +154,20 @@
         {{ form.gp }}<br>
         <label for="id_pp">PP:</label><br>
         {{ form.pp }}<br>
-
-
         </div>
+        <div class="col-sm-3">
+          <label for="id_personality">Personality traits:</label><br>
+          <textarea name="personality" cols="20" rows="9" maxlength="500" required id="id_personality">
+  </textarea><br>
+          <label for="id_ideals">Ideals:</label><br>
+          <textarea name="ideals" cols="20" rows="9" maxlength="500" required id="id_ideals">
+  </textarea><br>
+          <label for="id_bonds">Bonds:</label><br>
+          <textarea name="bonds" cols="20" rows="9" maxlength="500" required id="id_bonds">
+  </textarea><br>
+          <label for="id_flaws">Flaws:</label><br>
+          <textarea name="flaws" cols="20" rows="9" maxlength="500" required id="id_flaws">
+  </textarea><br>
       </div>
     </div>
   </div>

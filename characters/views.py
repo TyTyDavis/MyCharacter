@@ -4,7 +4,8 @@ from characters.models import Character
 from django.urls import reverse_lazy
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
+from .forms import CharacterForm
+from django.shortcuts import redirect
 
 # Create your views here.
 def home(request):
@@ -29,3 +30,13 @@ class characterDelete(DeleteView):
     model = Character
     success_url = reverse_lazy('home')
     template_name_suffix = '_check_delete'
+
+def createCharacter(request):
+    if request.method == "POST":
+        form = CharacterForm(request.POST)
+
+        if form.is_valid():
+            return redirect('home')
+    else:
+        form = CharacterForm()
+    return render(request, 'characters/character_form.html', {'form': form})
