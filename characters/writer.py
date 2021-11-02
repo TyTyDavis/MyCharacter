@@ -67,7 +67,7 @@ def writeAbilities(image, character):
 	draw.text((215, 1380), writeAbilityBonus(character.constitution),(0,0,0), font=font)
 	draw.text((215, 1680), writeAbilityBonus(character.intelligence),(0,0,0), font=font)
 	draw.text((215, 1980), writeAbilityBonus(character.wisdom),(0,0,0), font=font)
-	draw.text((215, 2280), writeAbilityBonus(character.charisma,(0,0,0), font=font)
+	draw.text((215, 2280), writeAbilityBonus(character.charisma),(0,0,0), font=font)
 
 def writeClass(image, characterClass):
 #
@@ -197,7 +197,7 @@ def writeSkills(image, character):
 		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 1340), "X",(0,0,0), font=font)
 		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1330), "+" + str(abilityBonus(character.dexterity + character.proficiency),(0,0,0), font=font)
+		draw.text((465, 1330), "+" + str(abilityBonus(character.dexterity + character.proficiency),(0,0,0), font=font))
 	else:
 		font = ImageFont.truetype(fontFile,40)
 		draw.text((465, 1330), writeAbilityBonus(character.dexterity),(0,0,0), font=font)
@@ -364,14 +364,14 @@ def writeAttacks(image, character):
 	img = image
 	draw = ImageDraw.Draw(img)
 	font = ImageFont.truetype(fontFile,25)
-	if character.weapon1 != "":
+	if character.weapon1Name != "":
 		draw.text((950, 1650), character.weapon1Name,(0,0,0), font=font)
-		draw.text((1230, 1650), "+" + str(weapon1Attack),(0,0,0), font=font)
-		draw.text((1380, 1650), character.id_weapon1Dmg,(0,0,0), font=font)
+		draw.text((1230, 1650), "+" + str(character.weapon1Attack),(0,0,0), font=font)
+		draw.text((1380, 1650), character.weapon1Dmg,(0,0,0), font=font)
 
-	if character.weapon2!= None:
+	if character.weapon2Name != "":
 		draw.text((950, 1730), character.weapon2Name,(0,0,0), font=font)
-		draw.text((1230, 1730), "+" + str(weapon2Attack,(0,0,0), font=font)
+		draw.text((1230, 1730), "+" + str(character.weapon2Attack),(0,0,0), font=font)
 		draw.text((1380, 1730), character.weapon2Dmg,(0,0,0), font=font)
 
 def writeArmor(image, character):
@@ -467,23 +467,23 @@ def writeFlavor(image, character):
 		line += 55
 
 def writeSheet(img, char):
-	writer.writeName(img, char.name)
-	writer.writeAbilities(img, char.abilities)
-	writer.writeClass(img, char.characterClass)
-	writer.writeRace(img, char.race.name)
-	writer.writeHP(img, char.hp)
-	writer.writeHitDie(img, char.hitDie, char.hitDieTotal)
-	writer.writeAlignment(img, char.alignment)
-	writer.writeInitiative(img, char.dexterity)
-	writer.writeSpeed(img, char.speed)
-	writer.writeProficiency(img, char.proficiency)
-	writer.writeSavingThrows(img, char)
-	writer.writeSkills(img, char)
-	writer.writeEquipment(img, char)
-	writer.writeAttacks(img, char)
-	writer.writeArmor(img, char)
-	writer.writeSpells(img, char)
-	writer.writeBackground(img, char)
-	writer.writeProficiencies(img, char)
-	writer.writeTraits(img, char)
-	writer.writeFlavor(img, char)
+	writeName(img, char.name)
+	writeAbilities(img, char)
+	writeClass(img, char.characterClass)
+	writeRace(img, char.race)
+	writeHP(img, char.hp)
+	writeHitDie(img, char.hitDie, char.hitDieTotal)
+	writeAlignment(img, char.alignment)
+	writeInitiative(img, char.dexterity)
+	writeSpeed(img, char.speed)
+	writeProficiency(img, char.proficiency)
+	writeSavingThrows(img, char)
+	writeSkills(img, char)
+	writeEquipment(img, char)
+	writeAttacks(img, char)
+	writeArmor(img, char)
+	writeSpells(img, char)
+	writeBackground(img, char)
+	writeProficiencies(img, char)
+	writeTraits(img, char)
+	writeFlavor(img, char)

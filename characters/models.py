@@ -14,7 +14,7 @@ class Character(models.Model):
     #top box
     name = models.CharField(max_length=100)
     characterClass = models.CharField(max_length=100)
-    race= models.CharField(max_length=100)
+    race = models.CharField(max_length=100)
     level = models.IntegerField(default=1,validators=[MaxValueValidator(20), MinValueValidator(1)])
     background = models.CharField(max_length=100)
     alignment = models.CharField(max_length=2)
@@ -27,7 +27,7 @@ class Character(models.Model):
     hitDie = models.CharField(max_length=4)
     hitDieTotal = models.IntegerField(default=1,validators=[MaxValueValidator(20), MinValueValidator(1)])
     proficiency = models.IntegerField(default=1,validators=[MaxValueValidator(20), MinValueValidator(1)])
-
+    hp = models.IntegerField(default=1,validators=[MaxValueValidator(200), MinValueValidator(1)])
     #saves
     strengthSave = models.BooleanField(default=False)
     dexteritySave = models.BooleanField(default=False)

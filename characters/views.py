@@ -6,16 +6,14 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import CharacterForm
 from django.shortcuts import redirect
-
+from django.contrib.staticfiles.storage import staticfiles_storage
+from PIL import Image
+from . import writer
 # Create your views here.
+
+
 def home(request):
     return render(request, "main/home.html", {})
-
-
-def characterView(request, char_pk):
-
-    a = get_object_or_404(Character, pk=char_pk)
-    return render(request,"character.html",{"name" : a.name, "characterClass" : a.characterClass, "race" : a.race, "pk" : a.pk })
 
 class characterCreate(CreateView):
     model = Character
@@ -40,3 +38,10 @@ def createCharacter(request):
     else:
         form = CharacterForm()
     return render(request, 'characters/character_form.html', {'form': form})
+
+def characterView(request, char_pk):
+    char = get_object_or_404(Character, pk=char_pk)
+    imagePath = fontFile = staticfiles_storage.path('blankSheet.png')
+    img = Image.open(imagePath)
+    writer.writeSheet(img, char)
+    return render(request,"character.html",{"name" : char.name, "characterClass" : char.characterClass, "race" : char.race, "pk" : char.pk })
