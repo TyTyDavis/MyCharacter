@@ -8,3 +8,7 @@ A web app allowing Dungeons and Dragons characters to enter character stats and 
 ## Frameworks, libraries and tools
 * Django
 * Code from [DnDSheetBot](https://github.com/TyTyDavis/CharacterSheetBot)
+
+## To do
+* Make sure there are no hard-coded URLs
+* Allow for guests to make characters (hiring managers don't want to spend time making accounts)
