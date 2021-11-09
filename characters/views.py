@@ -57,8 +57,11 @@ def characterSheetView(request, pk):
     #CONVERT FROM pil IMAGE TO DJANGO FILE
     # Create a file-like object to write thumb data (thumb data previously created
     # using PIL, and stored in variable 'thumb')
+    character = Character.objects.get(pk=pk)
+
     sheet = Image.open(staticfiles_storage.path('blankSheet.png'))
     sheet_io = BytesIO()
+    writer.writeSheet(sheet, character)
     sheet.save(sheet_io, format='PNG')
 
     # Create a new Django file-like object to be used in models as ImageField using

@@ -5,6 +5,9 @@ import textwrap
 from django.contrib.staticfiles.storage import staticfiles_storage
 ##add new curriences
 #either use model's skill bonuses, or remove them from form
+#add player name writer
+#problem with alignment
+#passive perception is wrong
 
 fontFile = staticfiles_storage.path('Verdana.ttf')
 
@@ -286,12 +289,12 @@ def writeSkills(image, character):
 		draw.text((425, 1960), "X",(0,0,0), font=font)
 		font = ImageFont.truetype(fontFile,40)
 		draw.text((465, 1950), "+" + str(abilityBonus(character.wisdom) + character.proficiency),(0,0,0), font=font)
-		draw.text((150, 2475), str(10 + abilityBonus(character.wisdom) + character.proficiency),(0,0,0), font=font)
+		draw.text((150, 2475), "+" + str(abilityBonus(character.wisdom) + character.proficiency),(0,0,0), font=font)
 
 	else:
 		font = ImageFont.truetype(fontFile,40)
 		draw.text((465, 1950), writeAbilityBonus(character.wisdom),(0,0,0), font=font)
-		draw.text((150, 2475), str(10 + abilityBonus(character.wisdom)),(0,0,0), font=font)
+		draw.text((150, 2475), "+" + str(abilityBonus(character.wisdom)),(0,0,0), font=font)
 	if character.performanceProficiency == True:
 		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 2015), "X",(0,0,0), font=font)
@@ -357,7 +360,9 @@ def writeEquipment(image, character):
 	#ADD OTHER CURRENCIES
 	draw.text((975, 2505), str(character.cp),(0,0,0), font=font)
 	draw.text((975, 2615), str(character.sp),(0,0,0), font=font)
+	draw.text((975, 2725), str(character.ep),(0,0,0), font=font)
 	draw.text((975, 2830), str(character.gp),(0,0,0), font=font)
+	draw.text((975, 2940), str(character.pp),(0,0,0), font=font)
 
 def writeAttacks(image, character):
 #
