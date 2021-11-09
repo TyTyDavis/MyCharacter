@@ -3,11 +3,11 @@ from PIL import ImageFont
 from PIL import ImageDraw
 import textwrap
 from django.contrib.staticfiles.storage import staticfiles_storage
-##add new curriences
+
 #either use model's skill bonuses, or remove them from form
-#add player name writer
-#problem with alignment
-#passive perception is wrong
+
+#problem with alignment?
+
 
 fontFile = staticfiles_storage.path('Verdana.ttf')
 
@@ -53,6 +53,13 @@ def writeName(image, name):
 	font = ImageFont.truetype(fontFile,50)
 	draw.text((200, 270), name,(0,0,0), font=font)
 
+def writePlayerName(image, name):
+#Write player name on sheet
+	img = image
+	draw = ImageDraw.Draw(img)
+	font = ImageFont.truetype(fontFile,40)
+	draw.text((2000, 210), name,(0,0,0), font=font)
+
 def writeAbilities(image, character):
 #
 	img = image
@@ -72,12 +79,12 @@ def writeAbilities(image, character):
 	draw.text((215, 1980), writeAbilityBonus(character.wisdom),(0,0,0), font=font)
 	draw.text((215, 2280), writeAbilityBonus(character.charisma),(0,0,0), font=font)
 
-def writeClass(image, characterClass):
+def writeClass(image, characterClass, level):
 #
 	img = image
 	draw = ImageDraw.Draw(img)
 	font = ImageFont.truetype(fontFile,60)
-	draw.text((1130, 200), characterClass,(0,0,0), font=font)
+	draw.text((1130, 200), characterClass + ", " + str(level),(0,0,0), font=font)
 
 def writeRace(image, race):
 #
@@ -357,7 +364,7 @@ def writeEquipment(image, character):
 		line += 47
 
 	font = ImageFont.truetype(fontFile,40)
-	#ADD OTHER CURRENCIES
+
 	draw.text((975, 2505), str(character.cp),(0,0,0), font=font)
 	draw.text((975, 2615), str(character.sp),(0,0,0), font=font)
 	draw.text((975, 2725), str(character.ep),(0,0,0), font=font)
@@ -390,7 +397,7 @@ def writeSpells(image, character):
 	line = 0
 	img = image
 	draw = ImageDraw.Draw(img)
-	toPrint = textwrap.wrap(character.spells, 50)
+	toPrint = textwrap.wrap(character.spells, 40)
 	font = ImageFont.truetype(fontFile,30)
 	for x in range(len(toPrint)):
 		draw.text((925, 1880 + line), str(toPrint[x]).replace("'",""),(0,0,0), font=font)
@@ -411,14 +418,14 @@ def writeProficiencies(image, character):
 	languageString = "Languages: " + str(character.languages)
 	proficiencyString = "Proficiencies: " + str(character.proficiencies)
 
-	toPrint = textwrap.wrap(languageString, 46)
+	toPrint = textwrap.wrap(languageString, 40)
 	font = ImageFont.truetype(fontFile,30)
 	for x in range(len(toPrint)):
 		draw.text((140, 2600 + line), str(toPrint[x]).replace("'",""),(0,0,0), font=font)
 		line += 50
 
 
-	toPrint = textwrap.wrap(proficiencyString, 46)
+	toPrint = textwrap.wrap(proficiencyString, 40)
 	for x in range(len(toPrint)):
 		draw.text((140, 2600 + line), str(toPrint[x]).replace("'",""),(0,0,0), font=font)
 		line += 50
@@ -473,8 +480,9 @@ def writeFlavor(image, character):
 
 def writeSheet(img, char):
 	writeName(img, char.name)
+	writePlayerName(img, char.playerName)
 	writeAbilities(img, char)
-	writeClass(img, char.characterClass)
+	writeClass(img, char.characterClass, char.level)
 	writeRace(img, char.race)
 	writeHP(img, char.hp)
 	writeHitDie(img, char.hitDie, char.hitDieTotal)
