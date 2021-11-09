@@ -1,7 +1,26 @@
 {% extends 'main/base.html' %}
+{% load static %}
 {% block title %}{{ character.name }}{% endblock %}
 
 {% block content %}
 <h1>{{ character.name }}</h1>
 <h2>Level {{ character.level }} {{ character.race }} {{ character.characterClass }}</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <img class="img-fluid img-thumbnail" src="{% url 'sheet' pk=character.pk %}" alt="{{character.name}}\'s character sheet" />
+    </div>
+    <div class="col-4">
+      <p><b>AC:</b>{{ character.armorClass }}
+      <p><b>HP:</b>{{ character.hp }}
+          <br>
+        <p><b>Strength:</b> {{ character.strength }}
+        <p><b>Dexterity:</b> {{ character.dexterity }}
+        <p><b>Constitution:</b> {{ character.constitution }}
+        <p><b>Intelligence:</b> {{ character.intelligence }}
+        <p><b>Wisdom:</b> {{ character.wisdom }}
+        <p><b>Charisma:</b> {{ character.charisma}}
+    </div>
+  </div>
+</div>
 {% endblock %}

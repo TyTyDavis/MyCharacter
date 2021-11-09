@@ -4,11 +4,15 @@ from characters.models import Character
 from django.urls import reverse_lazy
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, View
 from .forms import CharacterForm
 from django.shortcuts import redirect
 from django.contrib.staticfiles.storage import staticfiles_storage
+from django.templatetags.static import static
 from PIL import Image
+from django.core.files.temp import NamedTemporaryFile
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from . import writer
 
 # Create your views here.
@@ -48,8 +52,34 @@ def createCharacter(request):
 #    writer.writeSheet(img, char)
 #    return render(request,"character.html",{"name" : char.name, "characterClass" : char.characterClass, "race" : char.race, "pk" : char.pk })
 
+
+def characterSheetView(request, pk):
+    #CONVERT FROM pil IMAGE TO DJANGO FILE
+    # Create a file-like object to write thumb data (thumb data previously created
+    # using PIL, and stored in variable 'thumb')
+    sheet = Image.open(staticfiles_storage.path('blankSheet.png'))
+    sheet_io = BytesIO()
+    sheet.save(sheet_io, format='PNG')
+
+    # Create a new Django file-like object to be used in models as ImageField using
+    # InMemoryUploadedFile.  If you look at the source in Django, a
+    # SimpleUploadedFile is essentially instantiated similarly to what is shown here
+    sheet_file = InMemoryUploadedFile(sheet_io, None, 'foo.jpg', 'jpeg', None, None)
+
+    #sheet_temp = NamedTemporaryFile()
+
+    #writeSheet(sheet, char_pk)
+    #sheet.save(sheet_temp)
+    #image_data = open(staticfiles_storage.path('blankSheet.png'), encoding="utf8").read()
+    return HttpResponse(sheet_file, content_type="image/png")
+    #sheet_temp.close()
+
+
 class characterView(TemplateView):
     template_name = "character.html"
+    def dispatch(self, request, *args, **kwargs):
+
+        return super().dispatch(request, *args, **kwargs)
 
 
     def get_context_data(self, **kwargs):

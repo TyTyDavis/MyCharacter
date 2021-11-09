@@ -7,4 +7,5 @@ urlpatterns = [
     path('create/', views.createCharacter, name='create'),
     path('edit/<int:pk>', views.characterUpdate.as_view(), name='edit'),
     path('delete/<int:pk>', views.characterDelete.as_view(), name='delete'),
+    path('sheet/<int:pk>', views.characterSheetView, name='sheet'),
 ]
