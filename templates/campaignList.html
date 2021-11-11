@@ -1,36 +1,35 @@
 {% extends 'main/base.html' %}
 {% block content %}
-<h1>{{user.username}}'s characters</h1>
+<h1>{{user.username}}'s campaigns</h1>
 {% if user.is_authenticated %}
-{% if characters %}
+{% if campaigns %}
   <table class="table">
     <tr>
       <td><b>Name</b></td>
-      <td><b>Class</b></td>
-      <td><b>Level</b></td>
-      <td><b>Last updated</b></td>
     </tr>
-    {% for character in characters %}
-    {% url 'character' char_pk=character.pk as view_url %}
+    {% for campaign in campaigns %}
+    <!-- {% url 'character' char_pk=character.pk as view_url %}
     {% url 'edit' pk=character.pk as edit_url %}
-    {% url 'delete' pk=character.pk as delete_url %}
+    {% url 'delete' pk=character.pk as delete_url %} -->
     <tr>
-      <td>{{ character.name }}</td>
+      <td>{{ campaign.name }}</td>
+<!--
       <td>{{ character.characterClass }}</td>
       <td>{{ character.level }}</td>
       <td>{{ character.updated_on }}</td>
       <td><a class="btn btn-primary" href="{{ view_url }}">View</a></td>
       <td><a class="btn btn-primary" href="{{ edit_url }}"">Edit</a></td>
       <td><a class="btn btn-primary" href="{{ delete_url }}"">Delete</a></td>
+      -->
     </tr>
 
     {% endfor %}
 </table>
 {% else %}
-<p>No characters
+<p>No campaigns
 {% endif %}
-<p><a class="btn btn-primary" href="{% url 'create' %}">Create new character</a>
+<p><a class="btn btn-primary" href="{% url 'createCampaign' %}">Create a new campaign</a>
 {% else %}
-<p style="text-align:right"><a href="{% url 'login'%}">Login to create a character</a>
+<p style="text-align:right"><a href="{% url 'login'%}">Login to create a campaign</a>
 {% endif %}
 {% endblock content %}

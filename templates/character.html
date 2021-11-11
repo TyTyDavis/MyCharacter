@@ -20,6 +20,8 @@
         <p><b>Intelligence:</b> {{ character.intelligence }}
         <p><b>Wisdom:</b> {{ character.wisdom }}
         <p><b>Charisma:</b> {{ character.charisma}}
+          <br>
+        {% if character.author == user %}<a class="btn btn-primary" href="{% url 'edit' pk=character.pk %}">Edit</a>{% endif %}
     </div>
   </div>
 </div>

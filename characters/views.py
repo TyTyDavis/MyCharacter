@@ -40,8 +40,7 @@ class characterCreate(CreateView):
 
 class characterUpdate(UpdateView):
     model = Character
-    fields = "__all__"
-    template_name_suffix = '_update_form'
+    form_class = CharacterForm
 
 class characterDelete(DeleteView):
     model = Character
