@@ -4,7 +4,8 @@ from characters.models import Character
 from django.urls import reverse_lazy
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic.base import TemplateView, View
+from django.views.generic.base import TemplateView
+from django.views.generic.list import ListView
 from .forms import CharacterForm
 from django.shortcuts import redirect
 from django.contrib.staticfiles.storage import staticfiles_storage
@@ -86,3 +87,11 @@ class characterView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['character'] = get_object_or_404(Character, pk=context['char_pk'])
         return context
+
+class characterList(ListView):
+    model = Character
+    template_name = "characterList.html"
+    context_object_name = "characters"
+
+    def get_queryset(self):
+         return Character.objects.filter(author = self.request.user).order_by('-updated_on')

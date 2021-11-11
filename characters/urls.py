@@ -5,6 +5,7 @@ from django.contrib import admin
 
 urlpatterns = [
     path('create/', views.characterCreate.as_view(), name='create'),
+    path('characterlist/', views.characterList.as_view(), name='characterList'),
     path('edit/<int:pk>', views.characterUpdate.as_view(), name='edit'),
     path('delete/<int:pk>', views.characterDelete.as_view(), name='delete'),
     path('sheet/<int:pk>', views.characterSheetView, name='sheet'),
