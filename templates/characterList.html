@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+{% if objects %}
+<ul>
+    {% for object in objects %}
+    {% url 'article' url_title=object.title as the_url %}
+        <li>
+            <a href="{{ the_url }}">{{ object }}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% if user.is_authenticated %}
+<p><a href="{% url 'create' %}">Create new entry</a>
+{% endif %}

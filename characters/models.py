@@ -8,7 +8,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 class Character(models.Model):
     #add saves
-
+    author = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     #top box
@@ -18,7 +18,7 @@ class Character(models.Model):
     level = models.IntegerField(default=1,validators=[MaxValueValidator(20), MinValueValidator(1)])
     background = models.CharField(max_length=100)
     alignment = models.CharField(max_length=2)
-    playerName = models.CharField(max_length=100)
+    playerName = models.CharField(max_length=20, blank=True, null=True)
 
     experiencePoints = models.IntegerField(blank=True, null=True,validators=[MaxValueValidator(355000), MinValueValidator(1)])
     inspiration = models.IntegerField(blank=True, null=True,validators=[MaxValueValidator(99), MinValueValidator(1)])
@@ -82,15 +82,15 @@ class Character(models.Model):
     survivalProficiency = models.BooleanField(default=False)
 
     #combat
-    weapon1Name = models.CharField(max_length=100)
-    weapon1Attack = models.IntegerField(default=0,validators=[MaxValueValidator(20), MinValueValidator(-20)])
-    weapon1Dmg = models.CharField(max_length=20)
-    weapon2Name = models.CharField(max_length=100)
-    weapon2Attack = models.IntegerField(default=0,validators=[MaxValueValidator(20), MinValueValidator(-20)])
-    weapon2Dmg = models.CharField(max_length=20)
+    weapon1Name = models.CharField(blank=True, null=True, max_length=100)
+    weapon1Attack = models.IntegerField(blank=True, null=True, default=0,validators=[MaxValueValidator(20), MinValueValidator(-20)])
+    weapon1Dmg = models.CharField(blank=True, null=True, max_length=20)
+    weapon2Name = models.CharField(blank=True, null=True, max_length=100)
+    weapon2Attack = models.IntegerField(blank=True, null=True, default=0,validators=[MaxValueValidator(20), MinValueValidator(-20)])
+    weapon2Dmg = models.CharField(blank=True, null=True, max_length=20)
 
     #spells
-    spells = models.TextField(max_length = 500)
+    spells = models.TextField(blank=True, null=True, max_length = 500)
 
     #equipment
     equipment = models.TextField(max_length = 500)
@@ -101,16 +101,16 @@ class Character(models.Model):
     pp = models.IntegerField(default=0,validators=[MaxValueValidator(999), MinValueValidator(0)])
 
     #languages and proficiencies
-    languages = models.TextField(max_length = 500)
-    proficiencies = models.TextField(max_length = 500)
+    languages = models.TextField(blank=True, null=True, max_length = 500)
+    proficiencies = models.TextField(blank=True, null=True, max_length = 500)
 
-    traits = models.TextField(max_length = 1000)
+    traits = models.TextField(blank=True, null=True,max_length = 1000)
 
     #flavor
-    personality = models.TextField(max_length = 500)
-    ideals = models.TextField(max_length = 500)
-    bonds = models.TextField(max_length = 500)
-    flaws = models.TextField(max_length = 500)
+    personality = models.TextField(blank=True, null=True,max_length = 500)
+    ideals = models.TextField(blank=True, null=True,max_length = 500)
+    bonds = models.TextField(blank=True, null=True,max_length = 500)
+    flaws = models.TextField(blank=True, null=True,max_length = 500)
 
 
     def __str__(self):

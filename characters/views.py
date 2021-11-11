@@ -23,7 +23,19 @@ def home(request):
 
 class characterCreate(CreateView):
     model = Character
-    fields = "__all__"
+    form_class = CharacterForm
+
+    def form_valid(self, form):
+        character = form.save(commit=False)
+        character.author = self.request.user
+        character.save()
+
+        return super(characterCreate, self).form_valid(form)
+
+    def form_invalid(self, form):
+        return HttpResponse("form invalid")
+        print('error')
+        print(form.errors, len(form.errors))
 
 class characterUpdate(UpdateView):
     model = Character
@@ -40,42 +52,27 @@ def createCharacter(request):
         form = CharacterForm(request.POST)
 
         if form.is_valid():
+            instance = form.save(commit=False)
+            instance.author = request.user
+            instance.save()
             return redirect('home')
+        else:
+            print('error')
+            print(form.errors, len(form.errors))
     else:
         form = CharacterForm()
     return render(request, 'characters/character_form.html', {'form': form})
 
-#def characterView(request, char_pk):
-#    char = get_object_or_404(Character, pk=char_pk)
-#    imagePath = fontFile = staticfiles_storage.path('blankSheet.png')
-#    img = Image.open(imagePath)
-#    writer.writeSheet(img, char)
-#    return render(request,"character.html",{"name" : char.name, "characterClass" : char.characterClass, "race" : char.race, "pk" : char.pk })
-
 
 def characterSheetView(request, pk):
-    #CONVERT FROM pil IMAGE TO DJANGO FILE
-    # Create a file-like object to write thumb data (thumb data previously created
-    # using PIL, and stored in variable 'thumb')
     character = Character.objects.get(pk=pk)
 
     sheet = Image.open(staticfiles_storage.path('blankSheet.png'))
     sheet_io = BytesIO()
     writer.writeSheet(sheet, character)
     sheet.save(sheet_io, format='PNG')
-
-    # Create a new Django file-like object to be used in models as ImageField using
-    # InMemoryUploadedFile.  If you look at the source in Django, a
-    # SimpleUploadedFile is essentially instantiated similarly to what is shown here
     sheet_file = InMemoryUploadedFile(sheet_io, None, 'foo.jpg', 'jpeg', None, None)
-
-    #sheet_temp = NamedTemporaryFile()
-
-    #writeSheet(sheet, char_pk)
-    #sheet.save(sheet_temp)
-    #image_data = open(staticfiles_storage.path('blankSheet.png'), encoding="utf8").read()
     return HttpResponse(sheet_file, content_type="image/png")
-    #sheet_temp.close()
 
 
 class characterView(TemplateView):

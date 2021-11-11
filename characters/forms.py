@@ -6,7 +6,7 @@ class CharacterForm(forms.ModelForm):
 
     class Meta:
         model = Character
-        exclude = ['updated_on','created_on']
+        exclude = ['updated_on','created_on', 'author']
         widgets = {
             'level': forms.NumberInput(attrs={'style': 'width: 100px'}),
             'characterClass': forms.TextInput(attrs={'style': 'width: 200px'}),
@@ -51,9 +51,25 @@ class CharacterForm(forms.ModelForm):
             'speed': forms.NumberInput(attrs={'style': 'width: 50px'}),
             'hitDieTotal': forms.NumberInput(attrs={'style': 'width: 50px'}),
             'hitDie': forms.TextInput(attrs={'style': 'width: 100px'}),
+            'hp': forms.TextInput(attrs={'style': 'width: 100px'}),
+
+            'weapon1Name' : forms.TextInput(attrs={'style': 'max-width: 80%'}),
+            'weapon2Name' : forms.TextInput(attrs={'style': 'max-width: 80%'}),
+            'weapon1Dmg' : forms.TextInput(attrs={'style': 'max-width: 80%'}),
+            'weapon2Dmg' : forms.TextInput(attrs={'style': 'max-width: 80%'}),
 
             'weapon1Attack': forms.NumberInput(attrs={'style': 'width: 50px'}),
             'weapon2Attack': forms.NumberInput(attrs={'style': 'width: 50px'}),
+
+            'languages' : forms.Textarea(attrs={'style': 'max-width: 80%'}),
+            'proficiencies' : forms.Textarea(attrs={'style': 'max-width: 80%'}),
+            'equipment' : forms.Textarea(attrs={'style': 'max-width: 80%; height: 200px'}),
+            'spells' : forms.Textarea(attrs={'style': 'max-width: 80%; height: 200px'}),
+            'personality' : forms.Textarea(attrs={'style': 'max-width: 80%; height: 200px'}),
+            'ideals' : forms.Textarea(attrs={'style': 'max-width: 80%; height: 200px'}),
+            'bonds' : forms.Textarea(attrs={'style': 'max-width: 80%; height: 200px'}),
+            'flaws' : forms.Textarea(attrs={'style': 'max-width: 80%; height: 200px'}),
+            'traits' : forms.Textarea(attrs={'style': 'max-width: 80%'}),
 
 
 

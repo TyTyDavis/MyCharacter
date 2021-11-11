@@ -55,10 +55,11 @@ def writeName(image, name):
 
 def writePlayerName(image, name):
 #Write player name on sheet
-	img = image
-	draw = ImageDraw.Draw(img)
-	font = ImageFont.truetype(fontFile,40)
-	draw.text((2000, 210), name,(0,0,0), font=font)
+	if name!=None:
+		img = image
+		draw = ImageDraw.Draw(img)
+		font = ImageFont.truetype(fontFile,40)
+		draw.text((2000, 210), name,(0,0,0), font=font)
 
 def writeAbilities(image, character):
 #
@@ -376,12 +377,12 @@ def writeAttacks(image, character):
 	img = image
 	draw = ImageDraw.Draw(img)
 	font = ImageFont.truetype(fontFile,25)
-	if character.weapon1Name != "":
+	if character.weapon1Name != None:
 		draw.text((950, 1650), character.weapon1Name,(0,0,0), font=font)
 		draw.text((1230, 1650), "+" + str(character.weapon1Attack),(0,0,0), font=font)
 		draw.text((1380, 1650), character.weapon1Dmg,(0,0,0), font=font)
 
-	if character.weapon2Name != "":
+	if character.weapon2Name != None:
 		draw.text((950, 1730), character.weapon2Name,(0,0,0), font=font)
 		draw.text((1230, 1730), "+" + str(character.weapon2Attack),(0,0,0), font=font)
 		draw.text((1380, 1730), character.weapon2Dmg,(0,0,0), font=font)
@@ -394,14 +395,15 @@ def writeArmor(image, character):
 	draw.text((990, 610), str(character.armorClass),(0,0,0), font=font)
 
 def writeSpells(image, character):
-	line = 0
-	img = image
-	draw = ImageDraw.Draw(img)
-	toPrint = textwrap.wrap(character.spells, 40)
-	font = ImageFont.truetype(fontFile,30)
-	for x in range(len(toPrint)):
-		draw.text((925, 1880 + line), str(toPrint[x]).replace("'",""),(0,0,0), font=font)
-		line += 45
+	if character.spells != None:
+		line = 0
+		img = image
+		draw = ImageDraw.Draw(img)
+		toPrint = textwrap.wrap(character.spells, 40)
+		font = ImageFont.truetype(fontFile,30)
+		for x in range(len(toPrint)):
+			draw.text((925, 1880 + line), str(toPrint[x]).replace("'",""),(0,0,0), font=font)
+			line += 45
 
 def writeBackground(image, character):
 #
@@ -415,8 +417,14 @@ def writeProficiencies(image, character):
 	line = 0
 	img = image
 	draw = ImageDraw.Draw(img)
-	languageString = "Languages: " + str(character.languages)
-	proficiencyString = "Proficiencies: " + str(character.proficiencies)
+	if character.languages == None:
+		languageString = ""
+	else:
+		languageString = "Languages: " + str(character.languages)
+	if character.proficiencies == None:
+		proficiencyString = ""
+	else:
+		proficiencyString = "Proficiencies: " + str(character.proficiencies)
 
 	toPrint = textwrap.wrap(languageString, 40)
 	font = ImageFont.truetype(fontFile,30)
@@ -437,21 +445,33 @@ def writeTraits(image, character):
 	draw = ImageDraw.Draw(img)
 	font = ImageFont.truetype(fontFile,30)
 
-
-	toPrint = textwrap.wrap(character.traits, 40)
-	for x in range(len(toPrint)):
-		draw.text((1720, 1600 + line), str(toPrint[x]).replace('"',''),(0,0,0), font=font)
-		line += 46
+	if character.traits != None:
+		toPrint = textwrap.wrap(character.traits, 40)
+		for x in range(len(toPrint)):
+			draw.text((1720, 1600 + line), str(toPrint[x]).replace('"',''),(0,0,0), font=font)
+			line += 46
 
 def writeFlavor(image, character):
 #
 	line = 0
 	img = image
 	draw = ImageDraw.Draw(img)
-	personalityString = character.personality
-	idealString = character.ideals
-	bondString = character.bonds
-	flawString = character.flaws
+	if character.personality != None:
+		personalityString = character.personality
+	else:
+		personalityString=""
+	if character.ideals != None:
+		idealString = character.ideals
+	else:
+		idealString=""
+	if character.bonds != None:
+		bondString = character.bonds
+	else:
+		bondString=""
+	if character.flaws != None:
+		flawString = character.flaws
+	else:
+		flawString=""
 
 	toPrint = textwrap.wrap(personalityString, 40)
 	font = ImageFont.truetype(fontFile,30)

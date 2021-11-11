@@ -12,3 +12,5 @@ A web app allowing Dungeons and Dragons characters to enter character stats and 
 ## To do
 * Make sure there are no hard-coded URLs
 * Allow for guests to make characters (hiring managers don't want to spend time making accounts)
+* Add character model fields for ability bonuses, clean up skill system
+* Code and test character edit and delete

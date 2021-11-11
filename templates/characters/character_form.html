@@ -74,11 +74,9 @@ change the grid layout, this is a mess
         <label for="id_charismaSave">{{ form.charismaSave }} Charisma save*</label><br>
         <br>
         <label for="id_languages">Languages:*</label><br>
-        <textarea name="languages" cols="20" rows="9" maxlength="500" required id="id_languages">
-</textarea><br><br>
+        {{ form.languages }}<br><br>
         <label for="id_proficiencies">Proficiencies:*</label><br>
-        <textarea name="proficiencies" cols="20" rows="9" maxlength="500" required id="id_proficiencies">
-</textarea><br>
+        {{ form.proficiencies }}<br>
       </div>
       <div class="col-sm-3">
         <label for="id_inspiration">Inspiration:</label><br>
@@ -98,6 +96,8 @@ change the grid layout, this is a mess
         {{ form.deceptionProficiency }} {{ form.deception }}<br>
         <label for="id_history">History:*</label><br>
         {{ form.historyProficiency }} {{ form.history }}<br>
+        <label for="id_insight">Insight:*</label><br>
+        {{ form.insightProficiency }} {{ form.insight }}<br>
         <label for="id_initimidation">Intimidation:*</label><br>
         {{ form.intimidationProficiency }} {{ form.intimidation }}<br>
         <label for="id_investigation">Investigation:*</label><br>
@@ -126,6 +126,8 @@ change the grid layout, this is a mess
         {{form.armorClass }}<br>
         <label for="id_speed">Speed:*</label><br>
         {{ form.speed }}<br>
+        <label for="id_hp">HP:*</label><br>
+        {{ form.hp }}<br>
         <label for="id_hitDieTotal">Hit Die Total:*</label><br>
         {{form.hitDieTotal }}<br>
         <label for="id_hitDie">Hit Die:*</label><br>
@@ -146,7 +148,10 @@ change the grid layout, this is a mess
         {{ form.weapon2Dmg }}<br>
         <br>
         <label for="id_spells">Spells:</label><br>
-        <textarea name="spells" cols="25" rows="6" maxlength="500" required id="id_spells"></textarea><br>
+        {{ form.spells }}
+        <br>
+        <label for="id_equipment">Equipment:</label><br>
+        {{ form.equipment }}
         <br>
         <label for="id_cp">CP:</label><br>
         {{ form.cp }}<br>
@@ -161,17 +166,15 @@ change the grid layout, this is a mess
         </div>
         <div class="col-sm-3">
           <label for="id_personality">Personality traits:</label><br>
-          <textarea name="personality" cols="20" rows="9" maxlength="500" required id="id_personality">
-  </textarea><br>
+          {{ form.personality }}<br>
           <label for="id_ideals">Ideals:</label><br>
-          <textarea name="ideals" cols="20" rows="9" maxlength="500" required id="id_ideals">
-  </textarea><br>
+          {{ form.ideals }}<br>
           <label for="id_bonds">Bonds:</label><br>
-          <textarea name="bonds" cols="20" rows="9" maxlength="500" required id="id_bonds">
-  </textarea><br>
+          {{ form.bonds }}<br>
           <label for="id_flaws">Flaws:</label><br>
-          <textarea name="flaws" cols="20" rows="9" maxlength="500" required id="id_flaws">
-  </textarea><br>
+          {{ form.flaws }}<br>
+          <label for="id_traits">Traits:</label><br>
+          {{ form.traits }}<br>
       </div>
     </div>
   </div>
