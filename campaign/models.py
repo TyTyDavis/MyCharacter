@@ -13,7 +13,7 @@ class Campaign(models.Model):
     owner=models.ForeignKey(User, default=None, on_delete=models.CASCADE)
     name=models.CharField(max_length=100)
     description=models.TextField(blank=True, null=True, max_length = 500)
-    characters=models.ForeignKey(Character, default=None, on_delete=models.CASCADE, blank=True, null=True)
+    characters=models.ManyToManyField(Character, default=None, blank=True, null=True)
 
     def __str__(self):
         return "%s" %(self.name)

@@ -21,7 +21,6 @@
 {% if user.is_authenticated %}
           <a href="{% url 'characterList' %}">Characters</a>
           <a href="{% url 'campaignList' %}">Campaigns</a>
-          <a href="{% url 'create' %}">Create</a>
           <p><a href="{% url 'logout' %}">Log out</a>
 {% else %}
           <a href="{% url 'login' %}">Login</a>

@@ -42,6 +42,14 @@ class characterUpdate(UpdateView):
     model = Character
     form_class = CharacterForm
 
+    def form_valid(self, form):
+        character = form.save(commit=False)
+        if character.author == self.request.user:
+            character.save()
+            return super(characterCreate, self).form_valid(form)
+        else:
+            return redirect('home')
+
 class characterDelete(DeleteView):
     model = Character
     success_url = reverse_lazy('home')

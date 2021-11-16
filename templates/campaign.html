@@ -4,5 +4,33 @@
 
 {% block content %}
 <h1>{{ campaign.name }}</h1>
+<p>{{ campaign.description }}
+{% if characters %}
+<table class="table">
+  <tr>
+    <td><b>Name</b></td>
+    <td><b>Class</b></td>
+    <td><b>AC</b></td>
+    <td><b>Last updated</b></td>
+  </tr>
+  {% for character in characters %}
+  {% url 'character' char_pk=character.pk as view_url %}
+  {% url 'remove' characterpk=character.pk campaignpk=campaign.pk as remove_url %}
+  <tr>
+    <td>{{ character.name }}</td>
+    <td>{{ character.characterClass }}</td>
+    <td>{{ character.armorClass }}</td>
+    <td>{{ character.updated_on }}</td>
+    <td><a class="btn btn-primary" href="{{ view_url }}">View</a></td>
+    {% if character.author == user %}<td><a class="btn btn-primary" href="{{ remove_url }}">Remove</a></td>{% endif %}
+  </tr>
+
+  {% endfor %}
+  {% else %}
+    <p>No characters
+  {% endif %}
+</table>
+<label for="pk">Add character:</label><br>
+<input type="text" id="pk" name="character"><br><input type="submit" value="Submit">
 
 {% endblock %}

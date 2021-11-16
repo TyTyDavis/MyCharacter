@@ -112,9 +112,19 @@ class Character(models.Model):
     bonds = models.TextField(blank=True, null=True,max_length = 500)
     flaws = models.TextField(blank=True, null=True,max_length = 500)
 
-
     def __str__(self):
         return "%s, %s %s" %(self.name, self.race, self.characterClass)
 
     def get_absolute_url(self):
         return reverse('character', kwargs={'char_pk': self.pk})
+
+
+    def has_change_permission(self, request, obj=None):
+        if obj is not None:
+            if request.user.is_superuser:
+                return True
+            else:
+                if obj.user != request.user:
+                    return False
+                else:
+                    return True
