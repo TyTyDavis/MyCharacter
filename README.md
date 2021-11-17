@@ -13,5 +13,4 @@ A web app allowing Dungeons and Dragons players to enter character stats and gen
 
 ## To do
 * Allow for guests to make characters (hiring managers don't want to spend time making accounts)
-* Figure out why alignment isnt printing to sheet
 * make sure people don't have permissions to edit other people's stuff
