@@ -25,7 +25,7 @@ class Character(models.Model):
     inspiration = models.IntegerField(blank=True, null=True,validators=[MaxValueValidator(99), MinValueValidator(1)])
     armorClass = models.IntegerField(default=10,validators=[MaxValueValidator(50), MinValueValidator(1)])
     speed = models.IntegerField(default=30,validators=[MaxValueValidator(99), MinValueValidator(1)])
-    hitDie = models.CharField(max_length=4)
+    hitDie = models.CharField(max_length=4, blank=True, null=True)
     hitDieTotal = models.IntegerField(default=1,validators=[MaxValueValidator(20), MinValueValidator(1)])
     proficiency = models.IntegerField(default=1,validators=[MaxValueValidator(20), MinValueValidator(1)])
     hp = models.IntegerField(default=1,validators=[MaxValueValidator(200), MinValueValidator(1)])
@@ -95,7 +95,7 @@ class Character(models.Model):
     spells = models.TextField(blank=True, null=True, max_length = 500)
 
     #equipment
-    equipment = models.TextField(max_length = 500)
+    equipment = models.TextField(default="", max_length = 500)
     cp = models.IntegerField(default=0,validators=[MaxValueValidator(999), MinValueValidator(0)])
     sp = models.IntegerField(default=0,validators=[MaxValueValidator(999), MinValueValidator(0)])
     ep = models.IntegerField(default=0,validators=[MaxValueValidator(999), MinValueValidator(0)])

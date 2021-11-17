@@ -4,8 +4,6 @@ from PIL import ImageDraw
 import textwrap
 from django.contrib.staticfiles.storage import staticfiles_storage
 
-#either use model's skill bonuses, or remove them from form
-
 #problem with alignment?
 
 
@@ -105,8 +103,15 @@ def writeAlignment(image, alignment):
 #
 	img = image
 	draw = ImageDraw.Draw(img)
-	font = ImageFont.truetype(fontFile,60)
-	draw.text((1600, 310), alignment, font=font)
+	font = ImageFont.truetype(fontFile,50)
+	draw.text((1600, 310), alignment, (0,0,0), font=font)
+def writeXP(image, XP):
+#
+	if XP != None:
+		img = image
+		draw = ImageDraw.Draw(img)
+		font = ImageFont.truetype(fontFile,50)
+		draw.text((2000, 310), str(XP), (0,0,0), font=font)
 
 def writeInitiative(image, dex):
 #
@@ -114,6 +119,14 @@ def writeInitiative(image, dex):
 	draw = ImageDraw.Draw(img)
 	font = ImageFont.truetype(fontFile,60)
 	draw.text((1210, 610), writeAbilityBonus(dex),(0,0,0), font=font)
+
+def writeInspiration(image, inspiration):
+#
+	if inspiration != None:
+		img = image
+		draw = ImageDraw.Draw(img)
+		font = ImageFont.truetype(fontFile,60)
+		draw.text((425, 550), str(inspiration),(0,0,0), font=font)
 
 def writeProficiency(image, proficiency):
 #
@@ -262,7 +275,6 @@ def writeSkills(image, character):
 	draw.text((465, 2175), "+" + str(character.sleightOfHand),(0,0,0), font=font)
 	draw.text((465, 2230), "+" + str(character.stealth),(0,0,0), font=font)
 	draw.text((465, 2285), "+" + str(character.survival),(0,0,0), font=font)
-
 
 def writeEquipment(image, character):
 #
@@ -437,3 +449,5 @@ def writeSheet(img, char):
 	writeProficiencies(img, char)
 	writeTraits(img, char)
 	writeFlavor(img, char)
+	writeXP(img, char.experiencePoints)
+	writeInspiration(img, char.inspiration)
