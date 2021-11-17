@@ -10,6 +10,7 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.templatetags.static import static
 from campaign.models import Campaign
 from characters.models import Character
+from .forms import addCharacterForm
 
 # Create your views here.
 class campaignCreate(CreateView):
@@ -46,16 +47,29 @@ class campaignDelete(DeleteView):
 
 class campaignView(TemplateView):
     template_name = "campaign.html"
-    def dispatch(self, request, *args, **kwargs):
-
-        return super().dispatch(request, *args, **kwargs)
+    formClass = addCharacterForm
+    #success_url = ''
 
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['campaign'] = get_object_or_404(Campaign, pk=context['pk'])
+        form = addCharacterForm(self.request.POST or None)
+        context['form'] = form
+        context['campaign'] = get_object_or_404(Campaign, pk=4)
         context['characters'] = context['campaign'].characters.all()
         return context
+
+
+
+    def post(self, request, *args, **kwargs):
+        # check whether it's valid:
+        context = self.get_context_data()
+
+        if context["form"].is_valid():
+            characterObj = get_object_or_404(Character, pk=self.request.POST.get('characterpk'))
+            context['campaign'].characters.add(characterObj)
+        return redirect('campaign', campaignpk=context['campaign'].pk)
+
 
 class campaignList(ListView):
     model = Campaign
@@ -66,10 +80,12 @@ class campaignList(ListView):
          return Campaign.objects.filter(owner = self.request.user).order_by('-updated_on')
 
 def removeCharacterFromCampaign(request, campaignpk, characterpk):
+    #change this to post
+
     campaignObj = get_object_or_404(Campaign, pk=campaignpk)
     if campaignObj.owner == request.user:
         characterObj = get_object_or_404(Character, pk=characterpk)
         campaignObj.characters.remove(characterObj)
-        return redirect('campaign', pk=campaignpk)
+        return redirect('campaign', campaignpk=campaignpk)
     else:
-        return redirect('home', pk=campaignpk)
+        return redirect('home')

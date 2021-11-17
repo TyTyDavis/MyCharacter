@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
+from . import writer
 
 
 # Create your models here.
@@ -43,6 +44,7 @@ class Character(models.Model):
     wisdom = models.IntegerField(default=10,validators=[MaxValueValidator(35), MinValueValidator(1)])
     charisma = models.IntegerField(default=10,validators=[MaxValueValidator(35), MinValueValidator(1)])
 
+    
     #skills
     acrobatics = models.IntegerField(default=0,validators=[MaxValueValidator(20), MinValueValidator(-20)])
     acrobaticsProficiency = models.BooleanField(default=False)
@@ -111,6 +113,25 @@ class Character(models.Model):
     ideals = models.TextField(blank=True, null=True,max_length = 500)
     bonds = models.TextField(blank=True, null=True,max_length = 500)
     flaws = models.TextField(blank=True, null=True,max_length = 500)
+
+    strBonus = models.IntegerField(default=0, blank=True, null=True)
+    dexBonus = models.IntegerField(default=0, blank=True, null=True)
+    conBonus = models.IntegerField(default=0, blank=True, null=True)
+    intBonus = models.IntegerField(default=0, blank=True, null=True)
+    wisBonus = models.IntegerField(default=0, blank=True, null=True)
+    chaBonus = models.IntegerField(default=0, blank=True, null=True)
+
+    passivePerception = models.IntegerField(default=0, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        self.strBonus = writer.writeAbilityBonus(self.strength)
+        self.dexBonus = writer.writeAbilityBonus(self.dexterity)
+        self.conBonus = writer.writeAbilityBonus(self.constitution)
+        self.intBonus = writer.writeAbilityBonus(self.intelligence)
+        self.wisBonus = writer.writeAbilityBonus(self.wisdom)
+        self.chaBonus = writer.writeAbilityBonus(self.charisma)
+        self.passivePerception = self.perception + 10
+        super(Character, self).save(*args, **kwargs) # Call the "real" save() method.
 
     def __str__(self):
         return "%s, %s %s" %(self.name, self.race, self.characterClass)

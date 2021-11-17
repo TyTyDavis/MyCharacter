@@ -5,8 +5,9 @@
 {% block content %}
 <h1>{{ campaign.name }}</h1>
 <p>{{ campaign.description }}
-{% if characters %}
 <table class="table">
+{% if characters %}
+
   <tr>
     <td><b>Name</b></td>
     <td><b>Class</b></td>
@@ -27,10 +28,17 @@
 
   {% endfor %}
   {% else %}
-    <p>No characters
+    <tr>
+      <td>No characters</td>
+    </tr>
   {% endif %}
 </table>
-<label for="pk">Add character:</label><br>
-<input type="text" id="pk" name="character"><br><input type="submit" value="Submit">
-
+<br>
+<form action="" method="post">
+    {% csrf_token %}
+    <!-- to do: add tooltip about character Id numbers -->
+    <p><label for="id_characterpk">Add character</label><br>
+    <p>{{ form.characterpk }}
+    <input type="submit" value="Add">
+</form>
 {% endblock %}
