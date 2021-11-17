@@ -44,7 +44,7 @@ def writeAbilityBonus(score):
 		return "+3"
 	elif score < 20:
 		return "+4"
-	elif score < 22:
+	else:
 		return "+5"
 def writeName(image, name):
 #Write character name on sheet
@@ -204,153 +204,65 @@ def writeSkills(image, character):
 #
 	img = image
 	draw = ImageDraw.Draw(img)
+	font = ImageFont.truetype(fontFile,30)
 	if character.acrobaticsProficiency == True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 1340), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1330), "+" + str(abilityBonus(character.dexterity + character.proficiency),(0,0,0), font=font))
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1330), writeAbilityBonus(character.dexterity),(0,0,0), font=font)
 	if character.animalHandlingProficiency == True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 1395), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1385), "+" + str(abilityBonus(character.wisdom) + character.proficiency),(0,0,0), font=font)
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1385), writeAbilityBonus(character.wisdom),(0,0,0), font=font)
 	if character.arcanaProficiency == True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 1455), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1440), "+" + str(abilityBonus(character.intelligence) + character.proficiency),(0,0,0), font=font)
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1440), writeAbilityBonus(character.intelligence),(0,0,0), font=font)
 	if character.athleticsProficiency == True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 1510), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1500), "+" + str(abilityBonus(character.strength) + character.proficiency),(0,0,0), font=font)
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1500), writeAbilityBonus(character.strength),(0,0,0), font=font)
 	if character.deceptionProficiency == True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 1565), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1555), "+" + str(abilityBonus(character.charisma) + character.proficiency),(0,0,0), font=font)
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1555), writeAbilityBonus(character.charisma),(0,0,0), font=font)
 	if character.historyProficiency == True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 1625), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1610), "+" + str(abilityBonus(character.intelligence) + character.proficiency),(0,0,0), font=font)
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1610), writeAbilityBonus(character.intelligence),(0,0,0), font=font)
 	if character.insightProficiency == True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 1680), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1665), "+" + str(abilityBonus(character.wisdom) + character.proficiency),(0,0,0), font=font)
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1665), writeAbilityBonus(character.wisdom),(0,0,0), font=font)
 	if character.intimidationProficiency == True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 1735), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1725), "+" + str(abilityBonus(character.charisma) + character.proficiency),(0,0,0), font=font)
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1725), writeAbilityBonus(character.charisma),(0,0,0), font=font)
 	if character.investigationProficiency == True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 1790), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1780), "+" + str(abilityBonus(character.intelligence) + character.proficiency),(0,0,0), font=font)
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1780), writeAbilityBonus(character.intelligence),(0,0,0), font=font)
 	if character.medicineProficiency == True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 1845), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1835), "+" + str(abilityBonus(character.wisdom) + character.proficiency),(0,0,0), font=font)
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1835), writeAbilityBonus(character.wisdom),(0,0,0), font=font)
 	if character.natureProficiency == True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 1905), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1895), "+" + str(abilityBonus(character.intelligence) + character.proficiency),(0,0,0), font=font)
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1895), writeAbilityBonus(character.intelligence),(0,0,0), font=font)
 	if character.perceptionProficiency == True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 1960), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1950), "+" + str(abilityBonus(character.wisdom) + character.proficiency),(0,0,0), font=font)
-		draw.text((150, 2475), "+" + str(abilityBonus(character.wisdom) + character.proficiency),(0,0,0), font=font)
-
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 1950), writeAbilityBonus(character.wisdom),(0,0,0), font=font)
-		draw.text((150, 2475), "+" + str(abilityBonus(character.wisdom)),(0,0,0), font=font)
 	if character.performanceProficiency == True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 2015), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 2005), "+" + str(abilityBonus(character.charisma) + character.proficiency),(0,0,0), font=font)
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 2005), writeAbilityBonus(character.charisma),(0,0,0), font=font)
 	if character.persuasionProficiency== True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 2070), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 2060), "+" + str(abilityBonus(character.charisma) + character.proficiency),(0,0,0), font=font)
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 2060), writeAbilityBonus(character.charisma),(0,0,0), font=font)
 	if character.religionProficiency == True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 2125), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 2115), "+" + str(abilityBonus(character.intelligence) + character.proficiency),(0,0,0), font=font)
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 2115), writeAbilityBonus(character.intelligence),(0,0,0), font=font)
 	if character.sleightOfHandProficiency == True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 2185), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 2175), "+" + str(abilityBonus(character.dexterity) + character.proficiency),(0,0,0), font=font)
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 2175), writeAbilityBonus(character.dexterity),(0,0,0), font=font)
 	if character.stealthProficiency == True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 2240), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 2230), "+" + str(abilityBonus(character.dexterity) + character.proficiency),(0,0,0), font=font)
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 2230), writeAbilityBonus(character.dexterity),(0,0,0), font=font)
 	if character.survivalProficiency == True:
-		font = ImageFont.truetype(fontFile,30)
 		draw.text((425, 2295), "X",(0,0,0), font=font)
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 2285), "+" + str(abilityBonus(character.wisdom) + character.proficiency),(0,0,0), font=font)
-	else:
-		font = ImageFont.truetype(fontFile,40)
-		draw.text((465, 2285), writeAbilityBonus(character.wisdom),(0,0,0), font=font)
+
+	font = ImageFont.truetype(fontFile,40)
+	draw.text((465, 1330), "+" + str(character.acrobatics),(0,0,0), font=font)
+	draw.text((465, 1385), "+" + str(character.animalHandling),(0,0,0), font=font)
+	draw.text((465, 1440), "+" + str(character.arcana),(0,0,0), font=font)
+	draw.text((465, 1500), "+" + str(character.athletics),(0,0,0), font=font)
+	draw.text((465, 1555), "+" + str(character.deception),(0,0,0), font=font)
+	draw.text((465, 1610), "+" + str(character.history),(0,0,0), font=font)
+	draw.text((465, 1665), "+" + str(character.insight),(0,0,0), font=font)
+	draw.text((465, 1725), "+" + str(character.intimidation),(0,0,0), font=font)
+	draw.text((465, 1780), "+" + str(character.investigation),(0,0,0), font=font)
+	draw.text((465, 1835), "+" + str(character.medicine),(0,0,0), font=font)
+	draw.text((465, 1895), "+" + str(character.nature),(0,0,0), font=font)
+	draw.text((465, 1950), "+" + str(character.perception),(0,0,0), font=font)
+	draw.text((150, 2475), str(character.passivePerception),(0,0,0), font=font)
+	draw.text((465, 2005), "+" + str(character.performance),(0,0,0), font=font)
+	draw.text((465, 2060), "+" + str(character.persuasion),(0,0,0), font=font)
+	draw.text((465, 2115), "+" + str(character.religion),(0,0,0), font=font)
+	draw.text((465, 2175), "+" + str(character.sleightOfHand),(0,0,0), font=font)
+	draw.text((465, 2230), "+" + str(character.stealth),(0,0,0), font=font)
+	draw.text((465, 2285), "+" + str(character.survival),(0,0,0), font=font)
+
 
 def writeEquipment(image, character):
 #
@@ -498,6 +410,11 @@ def writeFlavor(image, character):
 		draw.text((1750, 1330 + line), str(toPrint[x]),(0,0,0), font=font)
 		line += 55
 
+def skillProficient(character, bool):
+	if bool:
+		return character.proficiency
+	else:
+		return 0
 def writeSheet(img, char):
 	writeName(img, char.name)
 	writePlayerName(img, char.playerName)

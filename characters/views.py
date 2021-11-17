@@ -30,8 +30,8 @@ class characterCreate(CreateView):
         character = form.save(commit=False)
         character.author = self.request.user
         character.save()
-
-        return super(characterCreate, self).form_valid(form)
+        return redirect('character', char_pk=character.pk)
+        #return super(characterCreate, self).form_valid(form)
 
     def form_invalid(self, form):
         return HttpResponse("form invalid")
@@ -46,7 +46,8 @@ class characterUpdate(UpdateView):
         character = form.save(commit=False)
         if character.author == self.request.user:
             character.save()
-            return super(characterCreate, self).form_valid(form)
+            return redirect('character', char_pk=character.pk)
+
         else:
             return redirect('home')
 

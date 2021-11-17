@@ -5,6 +5,7 @@
 {% block content %}
 <h1>{{ character.name }}</h1>
 <h4>Level {{ character.level }} {{ character.race }} {{ character.characterClass }}</h4>
+<p>Last updated: {{character.updated_on}}
 <div class="container">
   <div class="row">
     <div class="col-8">
@@ -14,12 +15,12 @@
       <p><b>AC:</b>{{ character.armorClass }}
       <p><b>HP:</b>{{ character.hp }}
           <br>
-        <p><b>Strength:</b> {{ character.strength }}
-        <p><b>Dexterity:</b> {{ character.dexterity }}
-        <p><b>Constitution:</b> {{ character.constitution }}
-        <p><b>Intelligence:</b> {{ character.intelligence }}
-        <p><b>Wisdom:</b> {{ character.wisdom }}
-        <p><b>Charisma:</b> {{ character.charisma}}
+        <p><b>Strength:</b> {{ character.strength }} ({{character.strBonus}})
+        <p><b>Dexterity:</b> {{ character.dexterity }} ({{character.dexBonus}})
+        <p><b>Constitution:</b> {{ character.constitution }} ({{character.conBonus}})
+        <p><b>Intelligence:</b> {{ character.intelligence }} ({{character.intBonus}})
+        <p><b>Wisdom:</b> {{ character.wisdom }} ({{character.wisBonus}})
+        <p><b>Charisma:</b> {{ character.charisma}} ({{character.chaBonus}})
           <br>
         {% if character.author == user %}<a class="btn btn-primary" href="{% url 'edit' pk=character.pk %}">Edit</a>{% endif %}
     </div>
