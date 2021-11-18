@@ -55,9 +55,11 @@ class campaignView(TemplateView):
         context = super().get_context_data(**kwargs)
         form = addCharacterForm(self.request.POST or None)
         context['form'] = form
-        context['campaign'] = get_object_or_404(Campaign, pk=4)
+        context['campaignpk']=self.kwargs['campaignpk']
+        context['campaign'] = get_object_or_404(Campaign, pk=context['campaignpk'])
         context['characters'] = context['campaign'].characters.all()
         return context
+
 
 
 
@@ -68,7 +70,7 @@ class campaignView(TemplateView):
         if context["form"].is_valid():
             characterObj = get_object_or_404(Character, pk=self.request.POST.get('characterpk'))
             context['campaign'].characters.add(characterObj)
-        return redirect('campaign', campaignpk=context['campaign'].pk)
+            return render(request, 'campaign.html', context)
 
 
 class campaignList(ListView):

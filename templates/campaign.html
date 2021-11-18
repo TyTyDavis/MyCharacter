@@ -3,27 +3,31 @@
 {% block title %}{{ campaign.name }}{% endblock %}
 
 {% block content %}
+<div class="card" style="">
+<div class="card-body">
 <h1>{{ campaign.name }}</h1>
 <p>{{ campaign.description }}
-<table class="table">
+<table class="table table-sm table-light">
 {% if characters %}
 
-  <tr>
-    <td><b>Name</b></td>
-    <td><b>Class</b></td>
-    <td><b>AC</b></td>
-    <td><b>Last updated</b></td>
-  </tr>
+  <thead>
+    <th>Name</th>
+    <th>Class</th>
+    <th>AC</th>
+    <th>Passive perception</th>
+    <th>Last updated</th>
+  </thead>
   {% for character in characters %}
   {% url 'character' char_pk=character.pk as view_url %}
   {% url 'remove' characterpk=character.pk campaignpk=campaign.pk as remove_url %}
   <tr>
-    <td>{{ character.name }}</td>
+    <td>{{ character.name }} <small class="text-muted">{{character.level}}</small></td>
     <td>{{ character.characterClass }}</td>
     <td>{{ character.armorClass }}</td>
+    <td>{{ character.passivePerception }}</td>
     <td>{{ character.updated_on }}</td>
-    <td><a class="btn btn-primary" href="{{ view_url }}">View</a></td>
-    {% if character.author == user %}<td><a class="btn btn-primary" href="{{ remove_url }}">Remove</a></td>{% endif %}
+    <td><a class="btn btn-primary btn-sm" href="{{ view_url }}">View</a></td>
+    {% if character.author == user %}<td><a class="btn btn-primary btn-sm" href="{{ remove_url }}">Remove</a></td>{% endif %}
   </tr>
 
   {% endfor %}
@@ -37,8 +41,11 @@
 <form action="" method="post">
     {% csrf_token %}
     <!-- to do: add tooltip about character Id numbers -->
-    <p><label for="id_characterpk">Add character</label><br>
+      <label for="id_characterpk"><h4>Add character</h4></label>
+      <p><small class="text-muted">Enter  a character's ID number (the number at the end of their profile page's URL, e.g. mychar.com/<mark>4</mark>/)</small>
     <p>{{ form.characterpk }}
     <input type="submit" value="Add">
+    </div>
 </form>
+</div>
 {% endblock %}

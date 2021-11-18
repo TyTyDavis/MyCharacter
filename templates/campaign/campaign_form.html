@@ -10,7 +10,10 @@ change the grid layout, this is a mess
 </head>
 {% block content %}
 <form method="post">{% csrf_token %}
-    {{ form.as_p }}
+    {{ form.name.label }}
+    {{ form.name }}<br>
+    {{form.description.label}}
+    {{ form.description }}
     <input type="submit" value="Save">
 </form>
 {% endblock %}

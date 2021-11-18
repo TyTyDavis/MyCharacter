@@ -10,6 +10,7 @@ A web app allowing Dungeons and Dragons players to enter character stats and gen
 * Bootstrap
 * Pillow (Python Imaging Library fork)
 * Code from [DnDSheetBot](https://github.com/TyTyDavis/CharacterSheetBot)
+* [Dot Grid pattern](https://www.toptal.com/designers/subtlepatterns/dot-grid-pattern/)
 
 ## To do
 * Allow for guests to make characters (hiring managers don't want to spend time making accounts)

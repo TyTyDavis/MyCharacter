@@ -3,18 +3,21 @@
 <h1>{{user.username}}'s campaigns</h1>
 {% if user.is_authenticated %}
 {% if campaigns %}
-  <table class="table">
-    <tr>
-      <td><b>Name</b></td>
-      <td></td>
-    </tr>
+  <table class="table table-light">
+    <thead>
+      <th>Name</th>
+      <th>Players</th>
+      <th></th>
+      <th></th>
+    </thead>
     {% for campaign in campaigns %}
     {% url 'campaign' campaignpk=campaign.pk as view_url %}
     {% url 'campaignDelete' pk=campaign.pk as delete_url %}
     <tr>
       <td>{{ campaign.name }}</td>
-      <td><a class="btn btn-primary" href="{{ view_url }}">View</a></td>
-      <td><a class="btn btn-primary" href="{{ delete_url }}"">Delete</a></td>
+      <td>{{ campaign.characters.all.count }}</td>
+      <td><a class="btn btn-primary btn-sm" href="{{ view_url }}">View</a></td>
+      <td><a class="btn btn-primary btn-sm" href="{{ delete_url }}"">Delete</a></td>
     </tr>
 
     {% endfor %}

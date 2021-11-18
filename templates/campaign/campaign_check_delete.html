@@ -2,7 +2,7 @@
 {% block title %}Delete character{% endblock %}
 
 {% block content %}
-{% if object.author == user %}
+{% if object.owner == user %}
 <form method="post">{% csrf_token %}
     <p>Are you sure you want to delete "{{ object.name }}"?</p>
     <input type="submit" value="Confirm">

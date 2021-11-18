@@ -19,4 +19,4 @@ class Campaign(models.Model):
         return "%s" %(self.name)
 
     def get_absolute_url(self):
-        return reverse('campaign', kwargs={'pk': self.pk})
+        return reverse('campaign', kwargs={'campaignpk': self.pk})

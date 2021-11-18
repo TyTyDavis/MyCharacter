@@ -5,7 +5,7 @@
 {% block content %}
 <h1>{{ character.name }}</h1>
 <h4>Level {{ character.level }} {{ character.race }} {{ character.characterClass }}</h4>
-<p>Last updated: {{character.updated_on}}
+<p><small class="text-muted">Last updated: {{character.updated_on}}</small></p>
 <div class="container">
   <div class="row">
     <div class="col-8">
