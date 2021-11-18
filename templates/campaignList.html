@@ -6,23 +6,15 @@
   <table class="table">
     <tr>
       <td><b>Name</b></td>
+      <td></td>
     </tr>
     {% for campaign in campaigns %}
-    {% url 'campaign' pk=campaign.pk as view_url %}
-    <!-- {% url 'character' char_pk=character.pk as view_url %}
-    {% url 'edit' pk=character.pk as edit_url %}
-    {% url 'delete' pk=character.pk as delete_url %} -->
+    {% url 'campaign' campaignpk=campaign.pk as view_url %}
+    {% url 'campaignDelete' pk=campaign.pk as delete_url %}
     <tr>
       <td>{{ campaign.name }}</td>
       <td><a class="btn btn-primary" href="{{ view_url }}">View</a></td>
-<!--
-      <td>{{ character.characterClass }}</td>
-      <td>{{ character.level }}</td>
-      <td>{{ character.updated_on }}</td>
-      <td><a class="btn btn-primary" href="{{ view_url }}">View</a></td>
-      <td><a class="btn btn-primary" href="{{ edit_url }}"">Edit</a></td>
       <td><a class="btn btn-primary" href="{{ delete_url }}"">Delete</a></td>
-      -->
     </tr>
 
     {% endfor %}

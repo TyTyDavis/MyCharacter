@@ -81,11 +81,12 @@ class campaignList(ListView):
 
 def removeCharacterFromCampaign(request, campaignpk, characterpk):
     #change this to post
-
-    campaignObj = get_object_or_404(Campaign, pk=campaignpk)
-    if campaignObj.owner == request.user:
+    if request.method =="GET":
+        campaignObj = get_object_or_404(Campaign, pk=campaignpk)
+        characterObj = get_object_or_404(Character, pk=characterpk)
+        return render(request, "campaign/campaign_remove.html", context={'campaign': campaignObj, 'character': characterObj })
+    elif request.method == "POST":
+        campaignObj = get_object_or_404(Campaign, pk=campaignpk)
         characterObj = get_object_or_404(Character, pk=characterpk)
         campaignObj.characters.remove(characterObj)
         return redirect('campaign', campaignpk=campaignpk)
-    else:
-        return redirect('home')

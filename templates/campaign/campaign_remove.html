@@ -2,12 +2,12 @@
 {% block title %}Delete character{% endblock %}
 
 {% block content %}
-{% if object.author == user %}
+{% if campaign.owner == user %}
 <form method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ object.name }}"?</p>
+    <p>Are you sure you want to remove {{ character.name }} from {{ campaign.name }}?</p>
     <input type="submit" value="Confirm">
 </form>
 {% else %}
-<h1>You do not have permission to delete this campaign</h1>
+<h1>You do not have permission to change this campaign</h1>
 {% endif %}
 {% endblock %}

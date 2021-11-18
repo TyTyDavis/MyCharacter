@@ -2,8 +2,13 @@
 {% block title %}Delete character{% endblock %}
 
 {% block content %}
+{% if object.author == user %}
 <form method="post">{% csrf_token %}
     <p>Are you sure you want to delete "{{ object.name }}"?</p>
     <input type="submit" value="Confirm">
 </form>
+{% else %}
+<h1>You do not have permission to delete this character</h1>
+{% endif %}
+
 {% endblock %}
