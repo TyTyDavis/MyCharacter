@@ -3,15 +3,17 @@
 {% block title %}{{ character.name }}{% endblock %}
 
 {% block content %}
+<div class="card">
+  <div class="card-body">
 <h1>{{ character.name }}</h1>
 <h4>Level {{ character.level }} {{ character.race }} {{ character.characterClass }}</h4>
 <p><small class="text-muted">Last updated: {{character.updated_on}}</small></p>
 <div class="container">
   <div class="row">
-    <div class="col-8">
-      <img class="img-fluid img-thumbnail" src="{% url 'sheet' pk=character.pk %}" alt="{{character.name}}\'s character sheet" />
+    <div class="col-sm-8">
+      <img class="img-fluid img-thumbnail" style="min-width: 300px;" src="{% url 'sheet' pk=character.pk %}" alt="{{character.name}}\'s character sheet" />
     </div>
-    <div class="col-4">
+    <div class="col-sm-4">
       <p><b>AC:</b>{{ character.armorClass }}
       <p><b>HP:</b>{{ character.hp }}
           <br>
@@ -24,6 +26,7 @@
           <br>
         {% if character.author == user %}<a class="btn btn-primary" href="{% url 'edit' pk=character.pk %}">Edit</a>{% endif %}
     </div>
+  </div>
   </div>
 </div>
 {% endblock %}
