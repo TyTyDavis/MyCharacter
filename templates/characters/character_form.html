@@ -8,37 +8,37 @@
 <form method="post" action="#">{% csrf_token %}
   <div class="container bg-light">
   <div class="row">
-    <div class="col">
+    <div class="col-sm">
       <label for="id_name">Name:*</label><br>
       {{ form.name }}
     </div>
-    <div class="col-2">
+    <div class="col-sm-2">
       <label for="id_characterClass">Class:*</label><br>
       {{ form.characterClass }}
     </div>
-    <div class="col-1">
+    <div class="col-sm-1">
       <label for="id_level">Level:*</label><br>
       {{ form.level }}
     </div>
-    <div class="col">
+    <div class="col-sm">
       <label for="id_background">Background:*</label><br>
       {{ form.background }}
     </div>
-    <div class="col">
+    <div class="col-sm">
       <label for="id_playerName">Player name:*</label><br>
       {{ form.playerName }}
     </div>
   </div>
   <div class="row">
-    <div class="col">
+    <div class="col-sm">
       <label for="id_race">Race:*</label><br>
       {{ form.race }}
     </div>
-  <div class="col">
+  <div class="col-sm">
     <label for="id_alignment">Alignment:*</label><br>
     {{ form.alignment }}
   </div>
-  <div class="col">
+  <div class="col-sm">
     <label for="id_experiencePoints">Experience points:*</label><br>
     {{ form.experiencePoints }}
   </div>
@@ -74,7 +74,7 @@
         <label for="id_proficiencies">Proficiencies:</label><br>
         {{ form.proficiencies }}<br>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-3 bg-white">
         <label for="id_inspiration">Inspiration:</label><br>
         {{ form.inspiration }}<br>
         <label for="id_proficiency">Proficiency bonus:*</label><br>
@@ -142,7 +142,7 @@
         <label for="id_pp">PP:</label><br>
         {{ form.pp }}<br>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-3  bg-white">
           <label for="id_personality">Personality traits:</label><br>
           {{ form.personality }}<br>
           <label for="id_ideals">Ideals:</label><br>
