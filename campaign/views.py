@@ -68,8 +68,16 @@ class campaignView(TemplateView):
         context = self.get_context_data()
 
         if context["form"].is_valid():
-            characterObj = get_object_or_404(Character, pk=self.request.POST.get('characterpk'))
-            context['campaign'].characters.add(characterObj)
+            if not Character.objects.filter(pk=self.request.POST.get('characterpk')).exists():
+                context['not_valid'] = True
+                return render(request, 'campaign.html', context)
+            else:
+                characterObj = get_object_or_404(Character, pk=self.request.POST.get('characterpk'))
+                context['campaign'].characters.add(characterObj)
+                return render(request, 'campaign.html', context)
+
+        else:
+            context['not_valid'] = True
             return render(request, 'campaign.html', context)
 
 

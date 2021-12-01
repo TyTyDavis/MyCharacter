@@ -4,6 +4,7 @@ A web app allowing Dungeons and Dragons players to enter character stats and gen
 * User accounts that allow for multiple characters to be created and updated
 * Groups, allowing players and gamemasters to see a table of all characters in their campaign, and all relevant stats.
 * Runtime generation of character sheet image files.
+### Potential extra features
 * Character page customization, including images and backstory text blocks that don't appear on a character sheet.
 ## Frameworks, libraries and tools
 * Django
@@ -14,10 +15,8 @@ A web app allowing Dungeons and Dragons players to enter character stats and gen
 ### For production
 * Gunicorn
 * Whitenoise
+* Heroku
 
 
 ## To do
-* Allow for guests to make characters (hiring managers don't want to spend time making accounts)
-* make sure people don't have permissions to edit other people's stuff
-
-Migration issues
+* Create error message/redirect for adding character that doesn't exist to campaign

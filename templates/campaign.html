@@ -45,6 +45,9 @@
       <p><small class="text-muted">Enter  a character's ID number (the number at the end of their profile page's URL, e.g. mychar.com/<mark>4</mark>/)</small>
     <p>{{ form.characterpk }}
     <input type="submit" value="Add">
+    {% if not_valid %}
+      <em>Not a valid character ID</em>
+    {% endif %}
     </div>
 </form>
 </div>
