@@ -10,7 +10,13 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 fontFile = staticfiles_storage.path('Verdana.ttf')
 
 def abilityBonus(score):
-	if score > 5 and score < 8:
+	if score < 2:
+		return -5
+	elif score < 4:
+		return -4
+	elif score < 6:
+		return -3
+	elif score < 8:
 		return -2
 	elif score < 10:
 		return -1
@@ -26,9 +32,25 @@ def abilityBonus(score):
 		return 4
 	elif score < 22:
 		return 5
+	elif score < 24:
+		return 6
+	elif score < 26:
+		return 7
+	elif score < 28:
+		return 8
+	elif score < 30:
+		return 9
+	else:
+		return 10
 
 def writeAbilityBonus(score):
-	if score > 5 and score < 8:
+	if score < 2:
+		return "-5"
+	elif score < 4:
+		return "-4"
+	elif score < 6:
+		return "-3"
+	elif score < 8:
 		return "-2"
 	elif score < 10:
 		return "-1"
@@ -42,8 +64,18 @@ def writeAbilityBonus(score):
 		return "+3"
 	elif score < 20:
 		return "+4"
-	else:
+	elif score < 22:
 		return "+5"
+	elif score < 24:
+		return "+6"
+	elif score < 26:
+		return "+7"
+	elif score < 28:
+		return "+8"
+	elif score < 30:
+		return "+9"
+	else:
+		return "10"
 def writeName(image, name):
 #Write character name on sheet
 	img = image
@@ -101,10 +133,11 @@ def writeHP(image, hp):
 
 def writeAlignment(image, alignment):
 #
-	img = image
-	draw = ImageDraw.Draw(img)
-	font = ImageFont.truetype(fontFile,50)
-	draw.text((1600, 310), alignment, (0,0,0), font=font)
+	if alignment != None:
+		img = image
+		draw = ImageDraw.Draw(img)
+		font = ImageFont.truetype(fontFile,50)
+		draw.text((1600, 310), alignment, (0,0,0), font=font)
 def writeXP(image, XP):
 #
 	if XP != None:
@@ -115,6 +148,7 @@ def writeXP(image, XP):
 
 def writeInitiative(image, dex):
 #
+
 	img = image
 	draw = ImageDraw.Draw(img)
 	font = ImageFont.truetype(fontFile,60)
@@ -130,26 +164,30 @@ def writeInspiration(image, inspiration):
 
 def writeProficiency(image, proficiency):
 #
-	img = image
-	draw = ImageDraw.Draw(img)
-	font = ImageFont.truetype(fontFile,60)
-	draw.text((410, 700), "+" + str(proficiency),(0,0,0), font=font)
+	if proficiency != None:
+		img = image
+		draw = ImageDraw.Draw(img)
+		font = ImageFont.truetype(fontFile,60)
+		draw.text((410, 700), "+" + str(proficiency),(0,0,0), font=font)
 
 def writeSpeed(image, speed):
 #
-	img = image
-	draw = ImageDraw.Draw(img)
-	font = ImageFont.truetype(fontFile,60)
-	draw.text((1470, 610), str(speed),(0,0,0), font=font)
+	if speed != None:
+		img = image
+		draw = ImageDraw.Draw(img)
+		font = ImageFont.truetype(fontFile,60)
+		draw.text((1470, 610), str(speed),(0,0,0), font=font)
 
 def writeHitDie(image, hitDie, hitDieTotal):
 #
 	img = image
 	draw = ImageDraw.Draw(img)
 	font = ImageFont.truetype(fontFile,75)
-	draw.text((1000, 1390), hitDie,(0,0,0), font=font)
+	if hitDie != None:
+		draw.text((1000, 1390), hitDie,(0,0,0), font=font)
 	font = ImageFont.truetype(fontFile,40)
-	draw.text((1030, 1320), str(hitDieTotal),(0,0,0), font=font)
+	if hitDieTotal != None:
+		draw.text((1030, 1320), str(hitDieTotal),(0,0,0), font=font)
 
 def writeSavingThrows(image, character):
 #
@@ -331,10 +369,11 @@ def writeSpells(image, character):
 
 def writeBackground(image, character):
 #
-	img = image
-	draw = ImageDraw.Draw(img)
-	font = ImageFont.truetype(fontFile,60)
-	draw.text((1600, 200), character.background,(0,0,0), font=font)
+	if character.background != None:
+		img = image
+		draw = ImageDraw.Draw(img)
+		font = ImageFont.truetype(fontFile,60)
+		draw.text((1600, 200), character.background,(0,0,0), font=font)
 
 def writeProficiencies(image, character):
 #

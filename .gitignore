@@ -4,3 +4,4 @@
 *\static-media
 *.bak
 *\migrations
+*\staticfiles

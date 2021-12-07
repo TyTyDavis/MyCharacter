@@ -16,19 +16,19 @@ class Character(models.Model):
     name = models.CharField(max_length=100)
     characterClass = models.CharField(max_length=100)
     race = models.CharField(max_length=100)
-    level = models.IntegerField(default=1,validators=[MaxValueValidator(20), MinValueValidator(1)])
-    background = models.CharField(max_length=100)
-    alignment = models.CharField(max_length=2)
+    level = models.IntegerField(default=1)
+    background = models.CharField(blank=True, null=True, max_length=100)
+    alignment = models.CharField(blank=True, null=True, max_length=2)
     playerName = models.CharField(max_length=20, blank=True, null=True)
 
-    experiencePoints = models.IntegerField(blank=True, null=True,validators=[MaxValueValidator(355000), MinValueValidator(1)])
-    inspiration = models.IntegerField(blank=True, null=True,validators=[MaxValueValidator(99), MinValueValidator(1)])
-    armorClass = models.IntegerField(default=10,validators=[MaxValueValidator(50), MinValueValidator(1)])
-    speed = models.IntegerField(default=30,validators=[MaxValueValidator(99), MinValueValidator(1)])
+    experiencePoints = models.IntegerField(blank=True, null=True)
+    inspiration = models.IntegerField(blank=True, null=True)
+    armorClass = models.IntegerField(default=10)
+    speed = models.IntegerField(default=30)
     hitDie = models.CharField(max_length=4, blank=True, null=True)
-    hitDieTotal = models.IntegerField(default=1,validators=[MaxValueValidator(20), MinValueValidator(1)])
-    proficiency = models.IntegerField(default=1,validators=[MaxValueValidator(20), MinValueValidator(1)])
-    hp = models.IntegerField(default=1,validators=[MaxValueValidator(200), MinValueValidator(1)])
+    hitDieTotal = models.IntegerField(default=1, blank=True, null=True)
+    proficiency = models.IntegerField(default=1)
+    hp = models.IntegerField(default=1,validators=[MinValueValidator(0)])
     #saves
     strengthSave = models.BooleanField(default=False)
     dexteritySave = models.BooleanField(default=False)
@@ -37,12 +37,12 @@ class Character(models.Model):
     wisdomSave = models.BooleanField(default=False)
     charismaSave = models.BooleanField(default=False)
     #abilities
-    strength = models.IntegerField(default=10,validators=[MaxValueValidator(35), MinValueValidator(1)])
-    dexterity = models.IntegerField(default=10,validators=[MaxValueValidator(35), MinValueValidator(1)])
-    constitution = models.IntegerField(default=10,validators=[MaxValueValidator(35), MinValueValidator(1)])
-    intelligence = models.IntegerField(default=10,validators=[MaxValueValidator(35), MinValueValidator(1)])
-    wisdom = models.IntegerField(default=10,validators=[MaxValueValidator(35), MinValueValidator(1)])
-    charisma = models.IntegerField(default=10,validators=[MaxValueValidator(35), MinValueValidator(1)])
+    strength = models.IntegerField(default=10,validators=[MaxValueValidator(35), MinValueValidator(0)])
+    dexterity = models.IntegerField(default=10,validators=[MaxValueValidator(35), MinValueValidator(0)])
+    constitution = models.IntegerField(default=10,validators=[MaxValueValidator(35), MinValueValidator(0)])
+    intelligence = models.IntegerField(default=10,validators=[MaxValueValidator(35), MinValueValidator(0)])
+    wisdom = models.IntegerField(default=10,validators=[MaxValueValidator(35), MinValueValidator(0)])
+    charisma = models.IntegerField(default=10,validators=[MaxValueValidator(35), MinValueValidator(0)])
 
 
     #skills
@@ -85,17 +85,17 @@ class Character(models.Model):
 
     #combat
     weapon1Name = models.CharField(blank=True, null=True, max_length=100)
-    weapon1Attack = models.IntegerField(blank=True, null=True, default=0,validators=[MaxValueValidator(20), MinValueValidator(-20)])
+    weapon1Attack = models.IntegerField(blank=True, null=True, default=0)
     weapon1Dmg = models.CharField(blank=True, null=True, max_length=20)
     weapon2Name = models.CharField(blank=True, null=True, max_length=100)
-    weapon2Attack = models.IntegerField(blank=True, null=True, default=0,validators=[MaxValueValidator(20), MinValueValidator(-20)])
+    weapon2Attack = models.IntegerField(blank=True, null=True, default=0)
     weapon2Dmg = models.CharField(blank=True, null=True, max_length=20)
 
     #spells
     spells = models.TextField(blank=True, null=True, max_length = 500)
 
     #equipment
-    equipment = models.TextField(default="", max_length = 500)
+    equipment = models.TextField(default="", max_length = 500, blank=True, null=True)
     cp = models.IntegerField(default=0,validators=[MaxValueValidator(999), MinValueValidator(0)])
     sp = models.IntegerField(default=0,validators=[MaxValueValidator(999), MinValueValidator(0)])
     ep = models.IntegerField(default=0,validators=[MaxValueValidator(999), MinValueValidator(0)])

@@ -53,7 +53,7 @@ class characterUpdate(UpdateView):
 
 class characterDelete(DeleteView):
     model = Character
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('characterList')
     template_name_suffix = '_check_delete'
 
 def createCharacter(request):

@@ -16,7 +16,3 @@ A web app allowing Dungeons and Dragons players to enter character stats and gen
 * Gunicorn
 * Whitenoise
 * Heroku
-
-
-## To do
-* Create error message/redirect for adding character that doesn't exist to campaign
