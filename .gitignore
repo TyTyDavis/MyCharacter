@@ -3,5 +3,4 @@
 *.env
 *\static-media
 *.bak
-*\migrations
 *\staticfiles
