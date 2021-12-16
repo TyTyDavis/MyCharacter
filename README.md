@@ -1,5 +1,8 @@
 # myCharacter
+[Check it out!](http://www.mycharacters.co/)
 A web app allowing Dungeons and Dragons players to enter character stats and generate a canonical link to an auto-generated character sheet and text of important stats
+* [Sample character](http://www.mycharacters.co/5/)
+* [Sample campaign](http://www.mycharacters.co/campaign/1/)
 ## Features
 * User accounts that allow for multiple characters to be created and updated
 * Groups, allowing players and gamemasters to see a table of all characters in their campaign, and all relevant stats.
