@@ -9,4 +9,5 @@ urlpatterns = [
     path('delete/<int:pk>', views.campaignDelete.as_view(), name='campaignDelete'),
     path('<int:campaignpk>/', views.campaignView.as_view(), name='campaign'),
     path('remove/<int:campaignpk>/<int:characterpk>', views.removeCharacterFromCampaign, name='remove'),
+    
 ]

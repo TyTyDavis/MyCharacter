@@ -24,8 +24,8 @@ urlpatterns = [
     path('campaign/', include('campaign.urls')),
     path('<int:char_pk>/', v.characterView.as_view(), name='character'),
     path('', v.home, name="home"),
-    #path("<int:id>", v.characterView, name="character"),
     path('admin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
     path('', include("django.contrib.auth.urls")),
+    path('accounts/', include("django.contrib.auth.urls")),
 ]

@@ -15,6 +15,8 @@ from django.core.files.temp import NamedTemporaryFile
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from . import writer
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -22,7 +24,7 @@ from . import writer
 def home(request):
     return render(request, "main/home.html", {})
 
-class characterCreate(CreateView):
+class characterCreate(LoginRequiredMixin, CreateView):
     model = Character
     form_class = CharacterForm
 
@@ -38,7 +40,7 @@ class characterCreate(CreateView):
         print('error')
         print(form.errors, len(form.errors))
 
-class characterUpdate(UpdateView):
+class characterUpdate(LoginRequiredMixin, UpdateView):
     model = Character
     form_class = CharacterForm
 
@@ -51,11 +53,12 @@ class characterUpdate(UpdateView):
         else:
             return redirect('home')
 
-class characterDelete(DeleteView):
+class characterDelete(LoginRequiredMixin, DeleteView):
     model = Character
     success_url = reverse_lazy('characterList')
     template_name_suffix = '_check_delete'
 
+@login_required
 def createCharacter(request):
     if request.method == "POST":
         form = CharacterForm(request.POST)
@@ -96,7 +99,7 @@ class characterView(TemplateView):
         context['character'] = get_object_or_404(Character, pk=context['char_pk'])
         return context
 
-class characterList(ListView):
+class characterList(LoginRequiredMixin, ListView):
     model = Character
     template_name = "characterList.html"
     context_object_name = "characters"

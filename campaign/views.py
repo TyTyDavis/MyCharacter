@@ -11,9 +11,11 @@ from django.templatetags.static import static
 from campaign.models import Campaign
 from characters.models import Character
 from .forms import addCharacterForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
-class campaignCreate(CreateView):
+class campaignCreate(LoginRequiredMixin, CreateView):
     model = Campaign
     fields=['name', 'description', 'characters']
 
@@ -29,7 +31,7 @@ class campaignCreate(CreateView):
         print('error')
         print(form.errors, len(form.errors))
 
-class campaignUpdate(UpdateView):
+class campaignUpdate(LoginRequiredMixin, UpdateView):
     model = Campaign
     fields=['name', 'description']
     def form_valid(self, form):
@@ -40,7 +42,7 @@ class campaignUpdate(UpdateView):
         else:
             return redirect('home')
 
-class campaignDelete(DeleteView):
+class campaignDelete(LoginRequiredMixin, DeleteView):
     model = Campaign
     success_url = reverse_lazy('home')
     template_name_suffix = '_check_delete'
@@ -81,7 +83,7 @@ class campaignView(TemplateView):
             return render(request, 'campaign.html', context)
 
 
-class campaignList(ListView):
+class campaignList(LoginRequiredMixin, ListView):
     model = Campaign
     template_name = "campaignList.html"
     context_object_name = "campaigns"
@@ -89,6 +91,7 @@ class campaignList(ListView):
     def get_queryset(self):
          return Campaign.objects.filter(owner = self.request.user).order_by('-updated_on')
 
+@login_required
 def removeCharacterFromCampaign(request, campaignpk, characterpk):
     #change this to post
     if request.method =="GET":
