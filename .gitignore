@@ -1,6 +1,10 @@
-*\env
+*/env
 *.pyc
 *.env
-*\static-media
+*/static-media
 *.bak
-*\staticfiles
+*/staticfiles
+*/Scripts
+*/Lib
+env/pyvenv.cfg
+myCharacter/pyvenv.cfg
